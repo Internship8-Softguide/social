@@ -26,7 +26,73 @@ function createDatabase($mysqli)
 function createTables($mysqli)
 {
     try {
-        $sql = "CREATE TABLE IF NOT EXISTS `user`(id int p)";
+        $sql = "CREATE TABLE IF NOT EXISTS `users` 
+        (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            phone VARCHAR(255) NOT NULL,
+            bio VARCHAR(255) NOT NULL,
+            address VARCHAR(255) NOT NULL,
+            dateofbirth DATE NOT NULL,
+            photo VARCHAR(255) NOT NULL,
+            gender VARCHAR(255) NOT NULL
+        )";
+        $mysqli->query($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS `message` 
+        (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            message TEXT NOT NULL,
+            fromUserid INT NOT NULL,
+            toUserid INT NOT NULL,
+            createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (fromUserid) REFERENCES users(id),
+            FOREIGN KEY (toUserid) REFERENCES users(id)
+
+        )";
+        $mysqli->query($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS `posts` 
+        (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            content TEXT NOT NULL,
+            user_id INT NOT NULL,
+            postImage VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+
+        )";
+        $mysqli->query($sql);
+        $sql = "CREATE TABLE IF NOT exists `comment`(
+            id int PRIMARY KEY AUTO_INCREMENT,
+            comment_message VARCHAR(225),
+            post_id INT NOT NULL,
+            user_id INT NOT NULL,
+            createdAt TIMESTAMP DEFAULT NOW(),
+            updatedAt TIMESTAMP DEFAULT NOW(),
+            FOREIGN KEY (post_id) REFERENCES posts(id),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )";
+        $mysqli->query($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS `reactiontype`
+        (
+            id INT  PRIMARY KEY AUTO_INCREMENT,
+            reactionName VARCHAR(255)
+
+        )";
+        $mysqli->query($sql);
+        $sql = "CREATE TABLE IF NOT EXISTS `reaction`
+        (
+            postId INT NOT NULL,
+            userId INT NOT NULL,
+            typeId INT NOT NULL,
+            PRIMARY KEY (postId, userId),
+            FOREIGN KEY (postId) REFERENCES posts(id),
+            FOREIGN KEY (userId) REFERENCES users(id),
+            FOREIGN KEY (typeId) REFERENCES reactiontype(id)
+        )";
         $mysqli->query($sql);
     } catch (Exception $exception) {
         echo "Can not create Tables";
@@ -37,3 +103,4 @@ function createTables($mysqli)
 
 $mysqli = getConnection();
 createDatabase($mysqli);
+createTables($mysqli);
