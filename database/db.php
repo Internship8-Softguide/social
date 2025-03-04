@@ -46,8 +46,8 @@ function createTables($mysqli)
             message TEXT NOT NULL,
             fromUserid INT NOT NULL,
             toUserid INT NOT NULL,
-            createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            createdAt TIMESTAMP DEFAULT NOW(),
+            updatedAt TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (fromUserid) REFERENCES users(id),
             FOREIGN KEY (toUserid) REFERENCES users(id)
 
