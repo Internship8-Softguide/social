@@ -75,3 +75,9 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
+.register-card{
+  padding: 20px;
+  width: 500px;
+  margin: 80px auto;
+  background-color: pink;
+}
