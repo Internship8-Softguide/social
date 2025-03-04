@@ -30,7 +30,7 @@ function createTables($mysqli)
         (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) UNIQUE NOT NULL,
+            email VARCHAR(191) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL,
             phone VARCHAR(255) NOT NULL,
             bio VARCHAR(255) NOT NULL,
@@ -46,8 +46,8 @@ function createTables($mysqli)
             message TEXT NOT NULL,
             fromUserid INT NOT NULL,
             toUserid INT NOT NULL,
-            createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            createdAt TIMESTAMP DEFAULT NOW(),
+            updatedAt TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (fromUserid) REFERENCES users(id),
             FOREIGN KEY (toUserid) REFERENCES users(id)
 
@@ -60,7 +60,7 @@ function createTables($mysqli)
             content TEXT NOT NULL,
             user_id INT NOT NULL,
             postImage VARCHAR(255) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            created_at TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (user_id) REFERENCES users(id)
 
         )";
@@ -95,6 +95,7 @@ function createTables($mysqli)
         )";
         $mysqli->query($sql);
     } catch (Exception $exception) {
+        echo $exception;
         echo "Can not create Tables";
         die();
     }
