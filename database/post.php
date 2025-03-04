@@ -18,7 +18,6 @@ function get_posts($mysqli)
         echo "Can not view posts";
     }
 }
-
 function get_post($mysqli, $id)
 {
     try {
