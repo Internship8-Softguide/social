@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+:root {
+  --PRIMARYCOLOR: #8a57e9;
+  --DAGER: #fc4c4c;
+}
+.login-card {
+  padding: 20px;
+  width: 500px;
+  margin: 80px auto;
+}
+.login-card > h1 {
+  font-weight: bolder;
+  font-size: 42px;
+}
+.sub-header,
+.header,
+.form-group {
+  margin-bottom: 20px;
+}
+
+.sub-header {
+  opacity: 0.4;
+  font-size: 18px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  outline: none;
+  border: 0.5px solid #80808086;
+  border-radius: 3px;
+}
+.validate {
+  display: block;
+  color: var(--DAGER);
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+}
+.login-btn {
+  width: 100%;
+  height: 47px;
+  font-size: 18px;
+  color: #fff;
+  background-color: var(--PRIMARYCOLOR);
+  border-radius: 3px;
+  border: 1px solid var(--PRIMARYCOLOR);
+}
