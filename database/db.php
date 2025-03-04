@@ -3,7 +3,7 @@
 function getConnection()
 {
     try {
-        $connection = new mysqli("localhost", "root", "");
+        $connection = new mysqli("localhost", "root", "root");
         return $connection;
     } catch (Exception $exception) {
         echo "Database Connection error";
@@ -28,16 +28,16 @@ function createTables($mysqli)
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `users` 
         (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            phone VARCHAR(255) NOT NULL,
-            bio VARCHAR(255) NOT NULL,
-            address VARCHAR(255) NOT NULL,
-            dateofbirth DATE NOT NULL,
-            photo VARCHAR(255) NOT NULL,
-            gender VARCHAR(255) NOT NULL
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `name` VARCHAR(225) NOT NULL,
+            `email` VARCHAR(225) UNIQUE NOT NULL,
+            `password` VARCHAR(225) NOT NULL,
+            `phone` VARCHAR(225) NOT NULL,
+            `bio` VARCHAR(225) NOT NULL,
+            `address` VARCHAR(225) NOT NULL,
+            `date_of_birth` DATE NOT NULL,
+            `photo` VARCHAR(225) NOT NULL,
+            `gender` VARCHAR(225) NOT NULL
         )";
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT EXISTS `message` 
@@ -56,10 +56,10 @@ function createTables($mysqli)
         $sql = "CREATE TABLE IF NOT EXISTS `posts` 
         (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            title VARCHAR(255) NOT NULL,
+            title VARCHAR(225) NOT NULL,
             content TEXT NOT NULL,
             user_id INT NOT NULL,
-            postImage VARCHAR(255) NOT NULL,
+            postImage VARCHAR(225) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -79,7 +79,7 @@ function createTables($mysqli)
         $sql = "CREATE TABLE IF NOT EXISTS `reactiontype`
         (
             id INT  PRIMARY KEY AUTO_INCREMENT,
-            reactionName VARCHAR(255)
+            reactionName VARCHAR(225)
 
         )";
         $mysqli->query($sql);
@@ -94,8 +94,8 @@ function createTables($mysqli)
             FOREIGN KEY (typeId) REFERENCES reactiontype(id)
         )";
         $mysqli->query($sql);
-    } catch (Exception $exception) {
-        echo "Can not create Tables";
+    } catch (Exception $e) {
+        echo $e->getMessage();
         die();
     }
 }
