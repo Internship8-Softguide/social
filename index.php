@@ -23,6 +23,16 @@ require_once("./database/index.php");
             <input type="text" name="email" id="email" class="input">
             <span class="validate">Email can't be blank!</span>
         </div>
+        <div class="form-group">
+            <label for="password" class="label">Password</label>
+            <input type="password" name="email" id="password" class="input">
+            <span class="validate">Password can't be blank!</span>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" name="rememberMe" id="rememberMe">
+            <label for="rememberMe" class="rememberMe">Remember Me for 30 days</label>
+            <a class="forget_pwd" href="#">Forget Password?</a>
+        </div>
         <button class="login-btn">Sign in</button>
     </div>
 </body>
