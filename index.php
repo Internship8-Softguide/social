@@ -13,6 +13,7 @@ require_once("./database/index.php");
     <title>Document</title>
     <link rel="stylesheet" href="./static/css/style.css">
     <script src="./static/js/app.js"></script>
+    <script src="./static/js/jquery.js"></script>
 </head>
 <body>
     <div class="login-card">
@@ -24,10 +25,18 @@ require_once("./database/index.php");
             <span class="validate">Email can't be blank!</span>
         </div>
         <div class="form-group">
+            <label for="email" class="label">Email address</label>
+            <div class="input-password">
+                <input type="text">
+                <span>i</span>
+            </div>
+            <span class="validate">Email can't be blank!</span>
+        </div>
+        <!-- <div class="form-group">
             <label for="password" class="label">Password</label>
             <input type="password" name="email" id="password" class="input">
             <span class="validate">Password can't be blank!</span>
-        </div>
+        </div> -->
         <div class="form-group">
             <input type="checkbox" name="rememberMe" id="rememberMe">
             <label for="rememberMe" class="rememberMe">Remember Me for 30 days</label>

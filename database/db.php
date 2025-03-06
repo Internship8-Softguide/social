@@ -3,7 +3,7 @@
 function getConnection()
 {
     try {
-        $connection = new mysqli("localhost", "root", "");
+        $connection = new mysqli("localhost", "root", "root");
         return $connection;
     } catch (Exception $exception) {
         echo "Database Connection error";
