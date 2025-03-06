@@ -137,6 +137,7 @@ require_once("./database/index.php");
                 5px;
             position:
                 relative;
+            outline: none;
         }
 
         .password-eye {
