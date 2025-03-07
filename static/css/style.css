@@ -8,10 +8,11 @@
   --PRIMARYCOLOR: #8a57e9;
   --DAGER: #fc4c4c;
 }
-.login-card {
+.login-card,.register-card {
   padding: 20px;
   width: 500px;
-  margin: 80px auto;
+  margin:60px auto;
+  background-color: rgb(222, 227, 230);
 }
 .login-card > h1 {
   font-weight: bolder;
@@ -22,9 +23,13 @@
 .form-group {
   margin-bottom: 20px;
 }
-
+.account-login{
+ font-size: 18px;
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
 .sub-header {
-  opacity: 0.4;
+  opacity: 0.6;
   font-size: 18px;
 }
 
@@ -33,10 +38,66 @@
   margin-bottom: 10px;
   font-size: 20px;
 }
+.password-box{
+  display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background-color: #f5e3e386;
+    border: 0.5px solid #80808086;
+}
+.eye{
+  justify-content: center;
+}
+
+.fa-solid{
+  font-size: 25px;
+  margin-left: 5px;
+  }
+  .direct-to-login {
+    display: block;
+    width: 60%;
+    height: 47px;
+    font-size: 18px;
+    color: #fff;
+    background-color: rgb(206, 208, 221);
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.register-btn {
+  display: block;
+  width: 60%;
+  height: 47px;
+  font-size: 18px;
+  color: #fff;
+  background-color: rgb(102, 133, 102);
+  border-radius: 3px;
+  border: 1px solid var(--PRIMARYCOLOR);
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;   
+}
+
+  .password-input{
+    width: 90%;
+    border-radius: 3px;
+    padding: 18px;
+    align-items: center;
+  }
+.password-input input {
+  border: none;
+  outline: none;
+  padding: 18px;
+}
 .input {
   display: block;
   width: 100%;
-  padding: 16px;
+  padding: 18px;
   outline: none;
   border: 0.5px solid #80808086;
   border-radius: 3px;
@@ -51,6 +112,12 @@
   align-items: center;
 }
 .input-password input {
+  border: none;
+  outline: none;
+  padding: 15px;
+  width: 90%;
+} 
+input {
   border: none;
   outline: none;
   padding: 15px;
@@ -90,13 +157,13 @@ input[type="checkbox"] {
   vertical-align: middle;
   margin-right: 5px;
 }
-
+/* 
 .register-card {
   padding: 20px;
   width: 500px;
   margin: 80px auto;
   background-color: pink;
-}
+} */
 /* home page */
 .home-background {
   font-family: monospace;

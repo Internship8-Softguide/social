@@ -8,9 +8,10 @@ require_once("./database/index.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <!-- <link rel="stylesheet" href="./static/css/style.css">
-    <script src="./static/js/app.js"></script> -->
-    <style>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <script src="./static/js/app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- <style>
         .register-card {
             padding:
                 20px;
@@ -194,34 +195,46 @@ require_once("./database/index.php");
             font-weight:
                 bolder;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
     <div class="register-card">
         <h1 class="header">Create Account</h1>
-        <p class="direct-text">Please enter your details</p>
+        <p class="sub-header">Please enter your details</p>
         <div class="form-group">
-            <label class="email-label">Your name</label>
-            <input type="text" class="email-input">
+            <label for="name" class="label">Your name</label>
+            <input type="text" name="name" id="name" class="input">
+            <span class="validate">Email can't be blank!</span>
         </div>
         <div class="form-group">
-            <label class="name-label">Your email</label>
-            <input type="text" class="name-input">
+            <label for="email" class="label">Your email</label>
+            <input type="text" name="email" id="email" class="input">
+            <span class="validate">Email can't be blank!</span>
         </div>
         <div class="form-group">
-            <label class="password-label">Password</label>
-            <input type="password" class="password-input">
-            <img class="password-eye" src="./static/image/eye.png" />
+            <label for="password" class="label">Password</label>
+            <div class="password-box">
+                <input type="password" class="password-input" name="password" id="password">
+                <span class="eye"><i class="fa-solid fa-eye-slash"></i></span>
+            </div>
+            <span class="validate">Email can't be blank!</span>
         </div>
         <div class="form-group">
-            <label class="repeat-password-label">Repeat password</label>
-            <input type="password" class="repeat-password-input">
-            <img class="repeat-password-eye" src="./static/image/eye.png" />
+            <label for="repeat-password" class="label">Repeat password</label>
+            <div class="password-box">
+                <input type="password" class="password-input" name="repeat-password" id="repeat-password">
+                <span class="eye"><i class="fa-solid fa-eye-slash"></i></span>
+            </div>
+            <span class="validate">Email can't be blank!</span>
         </div>
-        <button class="register-btn">Register</button>
-        <p class="direct-to-login">Already have an account</p>
-        <a href="#" class="login-btn">Login</a>
+        <div class="form-group">
+            <button class="register-btn">Register</button>
+        </div>
+        <p style="text-align: center;" class="account-login">Already have an account?</p>
+        <div class="form-group">
+            <button class="direct-to-login">Login Here</button>
+        </div>
     </div>
 </body>
 
