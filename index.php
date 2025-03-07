@@ -1,20 +1,4 @@
-<?php
-require_once("./database/index.php");
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./static/css/style.css">
-    <script src="./static/js/app.js"></script>
-    <script src="./static/js/jquery.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+<?php require_once ("./layout/header.php")?>
     <div class="login-card">
         <h1 class="header">Welcome Back</h1>
         <p class="sub-header">Please enter your detail</p>
@@ -39,5 +23,4 @@ require_once("./database/index.php");
         </div>
         <button class="login-btn">Sign in</button>
     </div>
-</body>
-</html>
+<?php require_once ("./layout/footer.php")?>

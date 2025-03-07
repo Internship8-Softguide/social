@@ -1,18 +1,4 @@
-<?php
-require_once("./database/index.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="./static/css/style.css">
-    <script src="./static/js/app.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
+<?php require_once ("./layout/header.php")?>
 <body>
 <div class="login-card">
         <h1 class="header">Create Account</h1>
@@ -43,10 +29,8 @@ require_once("./database/index.php");
             </div>
             <span class="validate"></span>
         </div>
-        <button class="register-btn">Register</button>
+        <button class="login-btn">Register</button>
         <p  class="account-login">Already have an account?<a href="#">Login here!</a></p>
     </div>
         
-</body>
-
-</html>
+    <?php require_once ("./layout/footer.php")?>
