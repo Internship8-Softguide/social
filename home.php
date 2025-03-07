@@ -87,3 +87,4 @@
     </div>
     </div>
 <?php require_once ("./layout/footer.php")?>
+<script src="./static/js/reauestAPI/home.js"></script>

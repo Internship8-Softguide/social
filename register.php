@@ -22,7 +22,7 @@
             <span class="validate"></span>
         </div>
         <div class="form-group">
-            <label for="repeat-password" class="label">Repeat password</label>
+            <label for="confirm-password" class="label">Confirm password</label>
             <div class="input-password">
                 <input type="password">
                 <span><i class="fa-solid fa-eye-slash"></i></span>
@@ -33,4 +33,5 @@
         <p  class="account-login">Already have an account?<a href="#">Login here!</a></p>
     </div>
         
-    <?php require_once ("./layout/footer.php")?>
+<?php require_once ("./layout/footer.php")?>
+<script src="./static/js/reauestAPI/register.js"></script>

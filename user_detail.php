@@ -62,3 +62,4 @@
         </div>
     </div>
 <?php require_once ("./layout/footer.php")?>
+<script src="./static/js/reauestAPI/user_detail.js"></script>
