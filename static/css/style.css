@@ -8,11 +8,10 @@
   --PRIMARYCOLOR: #8a57e9;
   --DAGER: #fc4c4c;
 }
-.login-card,.register-card {
+.login-card {
   padding: 20px;
   width: 500px;
-  margin:60px auto;
-  background-color: rgb(222, 227, 230);
+  margin: 80px auto;
 }
 .login-card > h1 {
   font-weight: bolder;
@@ -23,13 +22,9 @@
 .form-group {
   margin-bottom: 20px;
 }
-.account-login{
- font-size: 18px;
-  opacity: 0.6;
-  margin-bottom: 20px;
-}
+
 .sub-header {
-  opacity: 0.6;
+  opacity: 0.4;
   font-size: 18px;
 }
 
@@ -38,90 +33,13 @@
   margin-bottom: 10px;
   font-size: 20px;
 }
-.password-box{
-  display: flex;
-    align-items: center;
-    border: 2px solid #ccc;
-    border-radius: 3px;
-    background-color: #f5e3e386;
-    border: 0.5px solid #80808086;
-}
-.eye{
-  justify-content: center;
-}
-
-.fa-solid{
-  font-size: 25px;
-  margin-left: 5px;
-  }
-  .direct-to-login {
-    display: block;
-    width: 60%;
-    height: 47px;
-    font-size: 18px;
-    color: #fff;
-    background-color: rgb(206, 208, 221);
-    border-radius: 3px;
-    outline: none;
-    border: none;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-.register-btn {
-  display: block;
-  width: 60%;
-  height: 47px;
-  font-size: 18px;
-  color: #fff;
-  background-color: rgb(102, 133, 102);
-  border-radius: 3px;
-  border: 1px solid var(--PRIMARYCOLOR);
-  margin-top: 40px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;   
-}
-
-  .password-input{
-    width: 90%;
-    border-radius: 3px;
-    padding: 18px;
-    align-items: center;
-  }
-.password-input input {
-  border: none;
-  outline: none;
-  padding: 18px;
-}
 .input {
   display: block;
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   outline: none;
   border: 0.5px solid #80808086;
   border-radius: 3px;
-}
-.input-password {
-  width: 100%;
-  border: 0.5px solid #80808086;
-  border-radius: 3px;
-  height: 47px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.input-password input {
-  border: none;
-  outline: none;
-  padding: 15px;
-  width: 90%;
-} 
-input {
-  border: none;
-  outline: none;
-  padding: 15px;
-  width: 90%;
 }
 .validate {
   display: block;
@@ -129,7 +47,6 @@ input {
   font-size: 14px;
   line-height: 14px;
   height: 14px;
-  margin-top: 5px;
 }
 .login-btn {
   width: 100%;
@@ -142,49 +59,49 @@ input {
 }
 .forget_pwd {
   text-decoration: none;
-  margin-left: 105px;
+  margin-left: 105px; 
   font-size: 15px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: middle; 
 }
 
 .rememberMe {
-  vertical-align: middle;
+  vertical-align: middle; 
   font-size: 15px;
 }
 
 input[type="checkbox"] {
-  vertical-align: middle;
+  vertical-align: middle; 
   margin-right: 5px;
 }
-/* 
-.register-card {
+
+.register-card{
   padding: 20px;
   width: 500px;
   margin: 80px auto;
   background-color: pink;
-} */
+}
 /* home page */
 .home-background {
   font-family: monospace;
-  background-color: #daccf6;
+  background-color:#daccf6;
   display: flex;
   flex-direction: column;
 }
-.navbar {
+.my-navbar {
   background: white;
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
-.navbar h2 {
+.my-navbar h2{
   color: var(--PRIMARYCOLOR);
   font-weight: 900;
 }
-.navbar input {
+.my-navbar input {
   padding: 8px;
   width: 100%;
   max-width: 300px;
@@ -192,16 +109,13 @@ input[type="checkbox"] {
   border-radius: 5px;
   outline: none;
 }
-.nav-icons {
+.my-nav-icons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 30px;
   margin-right: 30px;
-}
-.nav-icons img {
-  width: 24px;
-  height: 24px;
   cursor: pointer;
+  font-size: 18px;
 }
 .profile {
   position: relative;
@@ -220,7 +134,7 @@ input[type="checkbox"] {
   top: 50px;
   right: 0;
   background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   border-radius: 5px;
   width: 120px;
 }
@@ -243,44 +157,107 @@ input[type="checkbox"] {
   flex: 1;
   padding: 20px;
 }
-.cards {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-.card {
-  background: white;
-  padding: 15px;
-  text-align: center;
+.new-post-container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  margin-bottom: 20px;
 }
-.card img {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
-.card h3 {
-  margin: 10px 0 5px;
-}
-.card p {
-  font-size: 14px;
-  color: #666;
+
+.new-post-button {
+  margin-left: 20px;
+  flex-grow: 1;
   text-align: left;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: gray;
+  cursor: pointer;
 }
-.card a {
-  text-decoration: none;
-  color: #d9534f;
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.post-container {
+  margin: auto;
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin-bottom: 5px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+}
+
+.post-info {
+  flex-grow: 1;
+}
+
+.post-info h6 {
+  margin: 0;
   font-weight: bold;
 }
+
+.post-info small {
+  color: gray;
+}
+
+.post-text {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.post-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.reaction-section{
+  margin-top: 20px;
+}
+.like-reaction{
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.comment-input {
+  margin-left: 30px;
+  flex-grow: 1;
+  text-align: left;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: gray;
+}
+
 @media (max-width: 1024px) {
   .cards {
-    grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 768px) {
   .cards {
-    grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(1, 1fr);
   }
 }
