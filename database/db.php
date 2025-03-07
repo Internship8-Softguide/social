@@ -33,21 +33,23 @@ function createTables($mysqli)
             `email` VARCHAR(225) UNIQUE NOT NULL,
             `password` VARCHAR(225) NOT NULL,
             `phone` VARCHAR(225) NOT NULL,
-            `bio` VARCHAR(225) NOT NULL,
-            `address` VARCHAR(225) NOT NULL,
+            `bio` VARCHAR(225) DEFAULT '',
+            `address` VARCHAR(225) DEFAULT '',
             `date_of_birth` DATE NOT NULL,
             `photo` VARCHAR(225) NOT NULL,
-            `gender` VARCHAR(225) NOT NULL
+            `gender` VARCHAR(225) NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT NOW(),
+            `updatedAt` TIMESTAMP DEFAULT NOW(),
         )";
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT EXISTS `message` 
         (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            message TEXT NOT NULL,
-            fromUserid INT NOT NULL,
-            toUserid INT NOT NULL,
-            createdAt TIMESTAMP DEFAULT NOW(),
-            updatedAt TIMESTAMP DEFAULT NOW(),
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `message` TEXT NOT NULL,
+            `fromUserid` INT NOT NULL,
+            `toUserid` INT NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT NOW(),
+            `updatedAt` TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (fromUserid) REFERENCES users(id),
             FOREIGN KEY (toUserid) REFERENCES users(id)
 
@@ -55,39 +57,41 @@ function createTables($mysqli)
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT EXISTS `posts` 
         (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            title VARCHAR(225) NOT NULL,
-            content TEXT NOT NULL,
-            user_id INT NOT NULL,
-            postImage VARCHAR(225) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `title` VARCHAR(225) NOT NULL,
+            `content` TEXT NOT NULL,
+            `user_id` INT NOT NULL,
+            `postImage` VARCHAR(225) NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT NOW(),
+            `updatedAt` TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (user_id) REFERENCES users(id)
 
         )";
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT exists `comment`(
-            id int PRIMARY KEY AUTO_INCREMENT,
-            comment_message VARCHAR(225),
-            post_id INT NOT NULL,
-            user_id INT NOT NULL,
-            createdAt TIMESTAMP DEFAULT NOW(),
-            updatedAt TIMESTAMP DEFAULT NOW(),
+            `id` int PRIMARY KEY AUTO_INCREMENT,
+            `comment_message` VARCHAR(225),
+            `post_id` INT NOT NULL,
+            `user_id` INT NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT NOW(),
+            `updatedAt` TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (post_id) REFERENCES posts(id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         )";
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT EXISTS `reactiontype`
         (
-            id INT  PRIMARY KEY AUTO_INCREMENT,
-            reactionName VARCHAR(225)
+            `id` INT  PRIMARY KEY AUTO_INCREMENT,
+            `reactionName` VARCHAR(225)
 
         )";
         $mysqli->query($sql);
         $sql = "CREATE TABLE IF NOT EXISTS `reaction`
         (
-            postId INT NOT NULL,
-            userId INT NOT NULL,
-            typeId INT NOT NULL,
+            `postId` INT NOT NULL,
+            `userId` INT NOT NULL,
+            `typeId` INT NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT NOW(),
             PRIMARY KEY (postId, userId),
             FOREIGN KEY (postId) REFERENCES posts(id),
             FOREIGN KEY (userId) REFERENCES users(id),
