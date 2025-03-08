@@ -5,7 +5,7 @@
     <p class="sub-header">Please enter your detail</p>
     <div class="form-group">
         <label for="email" class="label">Email address</label>
-        <input type="text" name="email" id="email" class="input" validate="blank|email|emailFormat">
+        <input type="text" name="email" id="email" class="input" validate="blank|email">
         <span class="validate" id="emailErr"></span>
     </div>
     <div class="form-group">
