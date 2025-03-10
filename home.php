@@ -1,3 +1,4 @@
+
 <?php require_once ("./layout/header.php")?>
     <div class="home-background">
     
@@ -19,7 +20,7 @@
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
+              </ul>
             </div>
             <span class="me-5">User Name</span>
         </div>
@@ -30,7 +31,6 @@
         <div class="new-post-container" data-bs-toggle="modal" data-bs-target="#postModal">
             <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
             <button class="new-post-button">Add a post</button>
-            
         </div>
         <div class="post-container">
             <div class="post-header">
@@ -71,7 +71,6 @@
                 <!-- <input type="text" name="comment" class="comment-input" placeholder="Comment here..."></input> -->
             </div>
         </div>
-        
     </div>
     <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -95,6 +94,7 @@
             </div>
         </div>
     </div>
+
     </div>
 
 <?php require_once ("./layout/footer.php")?>
@@ -133,3 +133,4 @@
 });
 
 </script>
+
