@@ -450,6 +450,17 @@ i:hover {
   color: gray;
 }
 
+/* Loading */
+ #loading{
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}
+
 @media (max-width: 1024px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
