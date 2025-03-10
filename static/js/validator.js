@@ -1,7 +1,8 @@
 const validate = (elementArr) => {
     $(".validate").text("");
-    let status = true;
+    let valid = true;
     for (let index = 0; index < elementArr.length; index++) {
+        let status = true;
         const element = elementArr[index];
         let rules = element.attr("validate");
         let ruleArr = rules.split("|");
@@ -36,18 +37,17 @@ const validate = (elementArr) => {
                 case "max:" + number:
                     status = max(element, number);
                     break;
-                case "min:" + number:
-                    status = min(element, number);
-                    break;
 
                 default:
                     break;
             }
-            if (status === false) break;
+            if (status === false) {
+                valid = false;
+                break;
+            }
         }
-        if (status === false) break;
     }
-    return status;
+    return valid;
 };
 
 const email = (element) => {
