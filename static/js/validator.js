@@ -4,7 +4,7 @@ const validate = (elementArr) => {
     for (let index = 0; index < elementArr.length; index++) {
         const element = elementArr[index];
         let rules = element.attr("validate");
-        let ruleArr = rules.split("|");
+        let ruleArr = rules.split("|");        
         for (let i = 0; i < ruleArr.length; i++) {
             let number = 0;
             if (ruleArr[i].includes(":")) {
@@ -29,6 +29,9 @@ const validate = (elementArr) => {
                     break;
                 case "max:" + number:
                     status = man(element, number);
+                    break;
+                case "file":
+                    status = file(element);
                     break;
                 default:
                     break;
@@ -76,3 +79,21 @@ const max = (element, number) => {
 const password = (element, number) => {
     return false;
 }
+
+const file = (element) => {
+    let file = element[0].files[0];    
+    let text = $('#textField').val().trim();    
+    let fileName = file ? file.name : "";
+    let fileExtension = fileName.split('.').pop().toLowerCase();
+    let allowedExtensions = ['jpg', 'jpeg', 'png'];
+    if (!file && !text) {
+        $("#postCreateErr").text("Either a file or text is required.");
+        return false;
+    }
+    if (file && !allowedExtensions.includes(fileExtension)) {
+        $('#fileErr').text("File type must be JPG, JPEG, or PNG.");
+        return false;
+    } 
+    return true;
+};
+
