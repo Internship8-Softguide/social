@@ -8,14 +8,14 @@
         
         <a class="navbar-brand ms-3" href="#">SG-Social</a>
 
-        <div class="search-bar mx-auto">
+        <!-- <div class="search-bar mx-auto">
             <input type="text" class="form-control" placeholder="Search">
             <button class="btn" type="button">Search</button>
-        </div>
+        </div> -->
         
         <div class="user-dropdown ms-auto">
-        <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
-        <i class="fas fa-comments fs-5 cursor-pointer me-5" role="button"></i>
+        <!-- <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
+        <i class="fas fa-comments fs-5 cursor-pointer me-5" role="button"></i> -->
             <div class="dropdown">
                 <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">

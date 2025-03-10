@@ -15,6 +15,8 @@ $(() => {
                     if (jsonResult.status == "success") {
                         setCookie(JSON.stringify(jsonResult));
                         location.href = "home.php";
+                    } else {
+                        console.log(jsonResult)
                     }
                     loadingHide();
                 });
