@@ -1,51 +1,99 @@
 const validate = (elementArr) => {
-    $('.validate').text('');
+    $(".validate").text("");
     let status = true;
-    elementArr.forEach(element => {
-        console.log(element)
-        let rules = element.attr('validate');
-        console.log(rules)
-        let ruleArr = rules.split('|');
-        console.log(ruleArr)
-        ruleArr.forEach((rule) => {
-
-            switch (rule) {
-                case 'blank':
+    for (let index = 0; index < elementArr.length; index++) {
+        const element = elementArr[index];
+        let rules = element.attr("validate");
+        let ruleArr = rules.split("|");        
+        for (let i = 0; i < ruleArr.length; i++) {
+            let number = 0;
+            if (ruleArr[i].includes(":")) {
+                let innerRule = ruleArr[i].split(":");
+                number = innerRule[1];
+            }
+            switch (ruleArr[i]) {
+                case "blank":
                     status = blank(element);
                     break;
-                case 'password':
-                case 'email':
-                case 'number':
-                case 'max':
-                case 'min':
-                case 'file':
+                case "email":
+                    status = email(element);
+                    break;
+                case "password":
+                    status = password(element);
+                    break;
+                case "conpassword":
+                    status = password(element);
+                    break;
+                case "min:" + number:
+                    status = min(element, number);
+                    break;
+                case "max:" + number:
+                    status = man(element, number);
+                    break;
+                case "file":
+                    status = file(element);
+                    break;
                 default:
                     break;
             }
-        });
-    });
+            if (status === false) break;
+        }
+        if (status === false) break;
+    }
     return status;
-}
+};
 
+const email = (element) => {
+    if (element.attr("id") === "email") {
+        let value = element.val();
+        let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var labelText = $('label[for="' + element.attr("id") + '"]').text();
+        if (!regex.test(value)) {
+            $("#" + element.attr("id") + "Err").text(labelText + " is invalid");
+            return false;
+        }
+    }
+    return true;
+};
 
 const blank = (element) => {
-    let value = element.val()
-    if (value == null || value == '') {
-        var labelText = $('label[for="' + element.attr('id') + '"]').text();
-        $('#' + element.attr('id') + 'Err').text(labelText + " can not be blank");
+    let value = element.val();
+    if (value == null || value == "") {
+        var labelText = $('label[for="' + element.attr("id") + '"]').text();
+        $("#" + element.attr("id") + "Err").text(
+            labelText + " can not be blank"
+        );
         return false;
     }
     return true;
-}
+};
 
-const number = (element) =>{
-   if(element.attr("type") === "number"){
-   if( !/^\d+(\.\d+)?$/.test(value)){
-    $('#'+element.attr("id")+"Err").text(labelText + "Only numbers are allowed!");
+const min = (element, number) => {
     return false;
-   }
-   return true;
-}
 }
 
+const max = (element, number) => {
+    return false;
+}
+
+const password = (element, number) => {
+    return false;
+}
+
+const file = (element) => {
+    let file = element[0].files[0];    
+    let text = $('#textField').val().trim();    
+    let fileName = file ? file.name : "";
+    let fileExtension = fileName.split('.').pop().toLowerCase();
+    let allowedExtensions = ['jpg', 'jpeg', 'png'];
+    if (!file && !text) {
+        $("#postCreateErr").text("Either a file or text is required.");
+        return false;
+    }
+    if (file && !allowedExtensions.includes(fileExtension)) {
+        $('#fileErr').text("File type must be JPG, JPEG, or PNG.");
+        return false;
+    } 
+    return true;
+};
 

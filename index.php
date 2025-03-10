@@ -1,4 +1,10 @@
-<?php require_once("./layout/header.php") ?>
+<?php
+if (isset($_COOKIE["user"])) {
+    header("location:home.php");
+}
+
+
+require_once("./layout/header.php") ?>
 
 <div class="login-card">
     <h1 class="header">Welcome Back</h1>
@@ -11,7 +17,7 @@
     <div class="form-group">
         <label for="password" class="label">Password</label>
         <div class="input-password">
-            <input type="password" id="password" validate="blank|password|min:3|max:8" />
+            <input type="password" id="password" validate="blank|password" />
             <span><i class="fa-solid fa-eye-slash"></i></span>
         </div>
         <span class="validate" id="passwordErr"></span>

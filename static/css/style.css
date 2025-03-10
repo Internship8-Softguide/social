@@ -148,70 +148,50 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
 }
-.my-navbar {
-  background: white;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+.navbar {
+  padding: 1rem 1rem;
 }
-.my-navbar h2 {
-  color: var(--PRIMARYCOLOR);
-  font-weight: 900;
+.navbar-brand {
+  color: var(--PRIMARYCOLOR) !important;
+  font-size: x-large !important;
+  font-weight: bolder;
 }
-.my-navbar input {
-  padding: 8px;
-  width: 100%;
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: var(--RADIUS);
-  outline: none;
-}
-.my-nav-icons {
+.search-bar {
   display: flex;
   align-items: center;
-  gap: 30px;
-  margin-right: 30px;
-  cursor: pointer;
-  font-size: 18px;
 }
-.profile {
-  position: relative;
+.search-bar input {
+  border-radius: 3px 0 0 3px;
+}
+.search-bar button {
+  background-color: var(--PRIMARYCOLOR);
+  border-color: var(--PRIMARYCOLOR);
+  color: white;
+  border-radius: 0 3px 3px 0;
+}
+.search-bar button:hover,
+.search-bar button:focus,
+.search-bar button:active {
+  background-color: var(--PRIMARYCOLOR) !important;
+  border-color: var(--PRIMARYCOLOR) !important;
+  color: white;
+}
+.user-dropdown {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
-.profile img {
+.user-dropdown img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-}
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: var(--RADIUS);
-  width: 120px;
-}
-.dropdown ul {
-  list-style: none;
-  padding: 10px;
-  margin: 0;
-}
-.dropdown ul li {
-  padding: 8px;
   cursor: pointer;
 }
-.dropdown ul li:hover {
-  background: #b1a2a2;
-}
-.profile:hover .dropdown {
-  display: block;
+.user-dropdown .dropdown-menu {
+  margin-top: 10px;
+  max-width: 100px;
+  overflow-x: hidden;
+  right: 0;
+  left: auto;
 }
 .main-content {
   flex: 1;
@@ -407,24 +387,35 @@ i {
   font-size: 23px;
   cursor: pointer;
 }
+.comment-reaction {
+  font-size: 21px;
+  cursor: pointer;
+}
 
+.comment-section {
+  margin-top: 10px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+.existing-comment {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
 .comment-input {
-  margin-left: 30px;
-  flex-grow: 1;
-  text-align: left;
-  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
   outline: none;
-  font-size: 16px;
-  color: gray;
 }
 
-@media (max-width: 1024px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 768px) {
-  .cards {
-    grid-template-columns: repeat(1, 1fr);
-  }
+#loading {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
 }
