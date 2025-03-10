@@ -1,11 +1,12 @@
-<?php require_once ("./layout/header.php")?>
-    <div class="home-background">
+<?php require_once("./layout/header.php") ?>
+
+<div class="home-background">
     <div class="my-navbar">
         <h2>SG-Social</h2>
         <input type="text" placeholder="Search jobs, friends...">
         <div class="my-nav-icons">
             <i class="fas fa-bell"></i>
-            <i class="fas fa-comments"></i> 
+            <i class="fas fa-comments"></i>
             <div class="profile">
                 <img src="static/image/profile.png" alt="User">
                 <div class="dropdown">
@@ -22,7 +23,6 @@
         <div class="new-post-container" data-bs-toggle="modal" data-bs-target="#postModal">
             <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
             <button class="new-post-button">Add a post</button>
-            
         </div>
         <div class="post-container">
             <div class="post-header">
@@ -61,7 +61,6 @@
                 <input type="text" name="comment" class="comment-input" placeholder="Comment here..."></input>
             </div>
         </div>
-        
     </div>
     <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -85,6 +84,7 @@
             </div>
         </div>
     </div>
-    </div>
-<?php require_once ("./layout/footer.php")?>
+</div>
+
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/home.js"></script>
