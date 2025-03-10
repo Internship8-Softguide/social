@@ -151,10 +151,10 @@ input[type="checkbox"] {
 .navbar {
   padding: 1rem 1rem;
 }
-.navbar-brand{
+.navbar-brand {
   color: var(--PRIMARYCOLOR) !important;
   font-size: x-large !important;
-  font-weight: bolder ;
+  font-weight: bolder;
 }
 .search-bar {
   display: flex;
@@ -168,12 +168,11 @@ input[type="checkbox"] {
   border-color: var(--PRIMARYCOLOR);
   color: white;
   border-radius: 0 3px 3px 0;
-
 }
 .search-bar button:hover,
 .search-bar button:focus,
 .search-bar button:active {
-  background-color: var(--PRIMARYCOLOR) !important; 
+  background-color: var(--PRIMARYCOLOR) !important;
   border-color: var(--PRIMARYCOLOR) !important;
   color: white;
 }
@@ -416,7 +415,7 @@ i:hover {
 .reaction-section {
   margin-top: 20px;
 }
-.like-reaction{
+.like-reaction {
   font-size: 23px;
   cursor: pointer;
 }
@@ -424,7 +423,6 @@ i:hover {
   font-size: 21px;
   cursor: pointer;
 }
-
 
 .comment-section {
   margin-top: 10px;
@@ -444,3 +442,12 @@ i:hover {
   outline: none;
 }
 
+#loading {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}

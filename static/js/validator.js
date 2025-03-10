@@ -40,15 +40,6 @@ const validate = (elementArr) => {
                 case "email":
                     status = email(element);
                     break;
-                // case checkPasswordMinValue:
-                //     status = checkPasswordMin(element, rule);
-                //     break;
-                // case maxValidateValue:
-                //     status = checkMaxValue(element, rule);
-                //     break;
-                // case minValidateValue:
-                //     status = checkMinValue(element, rule);
-                //     break;
                 default:
                     return false;
             }
@@ -87,6 +78,7 @@ const blank = (element) => {
     }
     return true;
 };
+
 const checkPassword = (element, rule) => {
     let min = parseInt(rule.split(":")[1], 10);
     let max = parseInt(rule.split(":")[2], 10);

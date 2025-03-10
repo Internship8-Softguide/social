@@ -39,10 +39,10 @@ function createTables($mysqli)
             `photo` VARCHAR(225) NOT NULL,
             `gender` VARCHAR(225) NOT NULL,
             `createdAt` TIMESTAMP DEFAULT NOW(),
-            `updatedAt` TIMESTAMP DEFAULT NOW(),
+            `updatedAt` TIMESTAMP DEFAULT NOW()
         )";
         $mysqli->query($sql);
-        $sql = "CREATE TABLE IF NOT EXISTS `message` 
+        $sql = "CREATE TABLE IF NOT EXISTS `message`
         (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `message` TEXT NOT NULL,
@@ -55,7 +55,7 @@ function createTables($mysqli)
 
         )";
         $mysqli->query($sql);
-        $sql = "CREATE TABLE IF NOT EXISTS `posts` 
+        $sql = "CREATE TABLE IF NOT EXISTS `posts`
         (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `title` VARCHAR(225) NOT NULL,

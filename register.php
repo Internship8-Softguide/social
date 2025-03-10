@@ -1,4 +1,9 @@
-<?php require_once("./layout/header.php") ?>
+<?php
+if (isset($_COOKIE["user"])) {
+    header("location:home.php");
+}
+
+require_once ("./layout/header.php") ?>
 
 <body>
     <div class="login-card">
@@ -34,5 +39,5 @@
         <p class="account-login">Already have an account?<a href="#">Login here!</a></p>
     </div>
 
-    <?php require_once("./layout/footer.php") ?>
+    <?php require_once ("./layout/footer.php") ?>
     <script src="./static/js/reauestAPI/register.js"></script>

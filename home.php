@@ -1,4 +1,5 @@
 
+<?php require_once ("./layout/auth.php")?>
 <?php require_once ("./layout/header.php")?>
     <div class="home-background">
     

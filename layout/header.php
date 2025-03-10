@@ -1,5 +1,5 @@
 <?php
-require_once("./database/index.php");
+require_once("./database/index.php")
 ?>
 
 
@@ -12,6 +12,7 @@ require_once("./database/index.php");
     <title>Document</title>
     <link rel="stylesheet" href="./static/css/style.css">
     <script src="./static/js/app.js"></script>
+    <script src="./static/js/api.js"></script>
     <script src="./static/js/jquery.js"></script>
     <script src="./static/js/validator.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
