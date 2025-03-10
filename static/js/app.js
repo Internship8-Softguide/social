@@ -29,3 +29,7 @@ function setCookie(value) {
     expires = "; expires=" + date.toUTCString();
     document.cookie = "user" + "=" + (value || "") + expires + "; path=/";
 }
+
+function removeCookie() {
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+}

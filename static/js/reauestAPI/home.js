@@ -1,10 +1,8 @@
 $(() => {
 
-    signIn.on("click", () => {
-        const elements = [];
-        if (validate(elements)) {
-            //api call
-        }
+    $("#logout").on("click", () => {
+        removeCookie();
+        location.reload();
     });
 
 });

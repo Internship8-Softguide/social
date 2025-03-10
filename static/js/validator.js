@@ -22,14 +22,24 @@ const validate = (elementArr) => {
                     status = password(element);
                     break;
                 case "conpassword":
-                    status = password(element);
+                    status = conpassword(element);
+                    break;
+                case "number":
+                    status = number(element);
+                    break;
+                case "file":
+                    status = file(element);
                     break;
                 case "min:" + number:
                     status = min(element, number);
                     break;
                 case "max:" + number:
-                    status = man(element, number);
+                    status = max(element, number);
                     break;
+                case "min:" + number:
+                    status = min(element, number);
+                    break;
+
                 default:
                     break;
             }
@@ -66,13 +76,23 @@ const blank = (element) => {
 };
 
 const min = (element, number) => {
-    return false;
+    return true;
 }
 
 const max = (element, number) => {
-    return false;
+    return true;
 }
 
 const password = (element, number) => {
-    return false;
+    return true;
+}
+
+
+const commonValidatMessage = (obj) => {
+    for (let key in obj) {
+        if (key == 'status') continue;
+        if (obj.hasOwnProperty(key)) {
+            console.log($("#" + key));
+        }
+    }
 }

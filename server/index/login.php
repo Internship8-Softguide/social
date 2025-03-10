@@ -1,9 +1,18 @@
 <?php
 
+header('Content-Type: application/json');
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+if ($requestMethod == 'POST') {
+    $inputData = json_decode(file_get_contents('php://input'), true);
 
-
-
-$response = ['id' => '1','name' => 'username','email' => 'admin@gmail.com','status' => "success"];
-// $response = ['id' => '1','email' => 'email does not found','passowrd' => "possword does not match",'status' => "error"];
-
-echo json_encode($response);
+    echo json_encode([
+        'status' => 200,
+        'message' => 'Success message',
+        'data' => $inputData
+    ]);
+} else {
+    echo json_encode([
+        'status' => 405,
+        'message' => 'Method Not Allowed'
+    ]);
+}

@@ -11,7 +11,7 @@ require_once ("./layout/header.php") ?>
         <p class="sub-header">Please enter your details</p>
         <div class="form-group">
             <label for="name" class="label">Your name</label>
-            <input type="text" name="name" id="name" class="input" validate="blank|name">
+            <input type="text" name="name" id="name" class="input" validate="blank|min:3">
             <span class="validate" id="nameErr"></span>
         </div>
         <div class="form-group">

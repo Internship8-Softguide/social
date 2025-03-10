@@ -20,7 +20,7 @@
                 <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" id="logout">Logout</a></li>
               </ul>
             </div>
             <span class="me-5">User Name</span>

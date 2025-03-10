@@ -1,5 +1,16 @@
 <?php
 
+function register($mysqli, $name, $email, $password)
+{
+    try {
+        $sql = "INSERT INTO `users`(`name`,`email`,`password`) 
+        VALUES ('$name','$email','$password')";
+        $mysqli->query($sql);
+        return ['message' => "Success user Register",'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(),'result' => false];
+    }
+}
 function create_user($mysqli, $name, $email, $password, $phone, $bio, $photo, $address, $dob, $gender)
 {
     try {
@@ -41,13 +52,14 @@ function get_user_by_id($mysqli, $id)
     }
 }
 
-function get_user_email_by_email($mysqli, $email)
+function get_user_email_by_email($mysqli, $email): array
 {
     try {
         $sql = "SELECT * FROM `users` WHERE `email`='$email'";
-        $mysqli->query($sql);
+        $result = $mysqli->query($sql);
+        return ['data' => $result->fetch_assoc(),'result' => true];
     } catch (Exception $th) {
-        echo "Error in Selecting User";
+        return ['message' => $th->getMessage(),'result' => false];
     }
 }
 

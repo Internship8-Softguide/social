@@ -12,12 +12,16 @@ $(() => {
             };
             postJson('./server/index/login.php', request)
                 .then((jsonResult) => {
-                    if (jsonResult.status == "success") {
-                        setCookie(JSON.stringify(jsonResult));
+                    if (jsonResult.status == 200) {
+                        setCookie(JSON.stringify(jsonResult.data));
+
                         location.href = "home.php";
                     } else {
-                        console.log(jsonResult)
+                        commonValidatMessage(jsonResult.data);
                     }
+                    loadingHide();
+                }).catch((e) => {
+                    console.log(e)
                     loadingHide();
                 });
 
