@@ -185,3 +185,4 @@ const checkPasswordMin = (element, rule) => {
     $("#" + element.attr("id") + "Err").text("");
     return true;
 };
+//hello
