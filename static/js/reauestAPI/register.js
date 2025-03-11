@@ -3,29 +3,33 @@ $(() => {
     const name = $("#name");
     const email = $("#email");
     const password = $("#password");
-    const confirmPassword = $("#confirmPassword")
+    const confirm = $("#confirm")
+
     register.on("click", () => {
-        loadingOpen();
-        const elements = [name, email, password, confirmPassword];
-        let request = {
-            name: name.val(),
-            email: email.val(),
-            password: password.val(),
-        }
+        const elements = [name, email, password, confirm];
         if (validate(elements)) {
-            postJson('./server/register/register.php', request).then((jsonResult) => {
-                if (jsonResult.status == 200) {
-                    // setCookie(JSON.stringify(jsonResult.data));
-                    // location.href = "home.php"
-                    console.log(jsonResult)
-                } else {
-                    commonValidatMessage(jsonResult.data);
-                }
+            //api call 
+            if (validate(elements)) {
+                let request = {
+                    name: name.val(),
+                    email: email.val(),
+                    password: password.val(),
+                    confirm: confirm.val(),
+                };
+                postJson('./server/register/register.php', request)
+                    .then((jsonResult) => {
+                        if (jsonResult.status == 200) {
+                            setCookie(JSON.stringify(jsonResult));
+                            location.href = "home.php";
+                        } else {
+                            commonValidatMessage(jsonResult.data);
+                        }
+                        loadingHide();
+                    });
+
+            } else {
                 loadingHide();
-            }).catch((e) => {
-                console.log(e)
-                loadingHide();
-            });
+            }
         }
     });
 });

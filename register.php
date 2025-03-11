@@ -11,7 +11,7 @@ require_once ("./layout/header.php") ?>
         <p class="sub-header">Please enter your details</p>
         <div class="form-group">
             <label for="name" class="label">Your name</label>
-            <input type="text" name="name" id="name" class="input" validate="blank|min:3">
+            <input type="text" name="name" id="name" class="input" validate="blank|min:3|max:10">
             <span class="validate" id="nameErr"></span>
         </div>
         <div class="form-group">
@@ -28,15 +28,15 @@ require_once ("./layout/header.php") ?>
             <span class="validate" id="passwordErr"></span>
         </div>
         <div class="form-group">
-            <label for="confirmPassword" class="label">Confirm password</label>
+            <label for="confirm" class="label">Confirm password</label>
             <div class="input-password">
-                <input type="confirmPassword" name="confirmPassword" id="confirmPassword" validate="blank|password">
+                <input type="password" name="confirm" id="confirm" validate="blank|password|confirm">
                 <span><i class="fa-solid fa-eye-slash"></i></span>
             </div>
-            <span class="validate" id="confirmPasswordErr"></span>
+            <span class="validate" id="confirmErr"></span>
         </div>
         <button id="register" class="login-btn">Register</button>
-        <p class="account-login">Already have an account?<a href="#">Login here!</a></p>
+        <p class="account-login">Already have an account?<a href="./index.php">Login here!</a></p>
     </div>
 
     <?php require_once ("./layout/footer.php") ?>

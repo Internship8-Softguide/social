@@ -5,12 +5,12 @@ const validate = (elementArr) => {
         let status = true;
         const element = elementArr[index];
         let rules = element.attr("validate");
-        let ruleArr = rules.split("|");        
+        let ruleArr = rules.split("|");
         for (let i = 0; i < ruleArr.length; i++) {
-            let number = 0;
+            let no = 0;
             if (ruleArr[i].includes(":")) {
                 let innerRule = ruleArr[i].split(":");
-                number = innerRule[1];
+                no = innerRule[1];
             }
             switch (ruleArr[i]) {
                 case "blank":
@@ -22,17 +22,17 @@ const validate = (elementArr) => {
                 case "password":
                     status = password(element);
                     break;
-                case "conpassword":
-                    status = conpassword(element);
+                case "confirm":
+                    status = confirm(element);
                     break;
                 case "number":
                     status = number(element);
                     break;
-                case "min:" + number:
-                    status = min(element, number);
+                case "min:" + no:
+                    status = min(element, no);
                     break;
-                case "max:" + number:
-                    status = max(element, number);
+                case "max:" + no:
+                    status = max(element, no);
                     break;
                 case "file":
                     status = file(element);
@@ -75,15 +75,50 @@ const blank = (element) => {
 };
 
 const min = (element, number) => {
+    let value = element.val();
+    if (value.length < number) {
+        var labelText = $('label[for="' + element.attr("id") + '"]').text();
+        $("#" + element.attr("id") + "Err").text(
+            labelText + " must be at least " + number + " characters"
+        );
+        return false;
+    }
     return true;
 }
 
 const max = (element, number) => {
+    let value = element.val();
+    if (value.length > number) {
+        var labelText = $('label[for="' + element.attr("id") + '"]').text();
+        $("#" + element.attr("id") + "Err").text(
+            labelText + " must be at much " + number + " characters"
+        );
+        return false;
+    }
     return true;
 }
 
 const password = (element, number) => {
-    return false;
+    // let value = element.val();
+    // let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    // var labelText = $('label[for="' + element.attr("id") + '"]').text();
+
+    // if (!regex.test(value)) {
+    //     $("#" + element.attr("id") + "Err").text(labelText + " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character");
+    //     return false;
+    // }
+    return true;
+}
+
+const confirm = (element) => {
+    // let value = element.val();
+    // let password = $("#password").val();
+    // var labelText = $('label[for="' + element.attr("id") + '"]').text();
+    // if (value !== password) {
+    //     $("#" + element.attr("id") + "Err").text(labelText + " did not match!");
+    //     return false;
+    // }
+    return true;
 }
 
 const file = (element) => {
@@ -103,16 +138,22 @@ const file = (element) => {
     return true;
 };
 
-const numberCheck = (element) =>{
-    console.log("checck number")
+const number = (element) => {
     let value = element.val();
     var labelText = $('label[for="' + element.attr("id") + '"]').text();
-   if(element.attr("id") === "number"){
-   if( !/^\d+(\.\d+)?$/.test(value)){
-    $('#'+element.attr("id")+"Err").text(labeText + " Only numbers are allowed!");
-    return false;
-   }
-   return true;
-}
+    if (!/^\d+(\.\d+)?$/.test(value)) {
+        $('#' + element.attr("id") + "Err").text(labelText + " must be only number!");
+        return false;
+    }
+    return true;
 };
 
+
+const commonValidatMessage = (obj) => {
+    for (let key in obj) {
+        if (key == 'status') continue;
+        if (obj.hasOwnProperty(key)) {
+            $("#" + key + 'Err').text(obj[key]);
+        }
+    }
+}

@@ -4,7 +4,7 @@ $(() => {
     const password = $("#password");
     signIn.on("click", () => {
         loadingOpen();
-        const elements = [email, password,numbercheck];
+        const elements = [email, password];
         if (validate(elements)) {
             let request = {
                 email: email.val(),
@@ -14,7 +14,6 @@ $(() => {
                 .then((jsonResult) => {
                     if (jsonResult.status == 200) {
                         setCookie(JSON.stringify(jsonResult.data));
-
                         location.href = "home.php";
                     } else {
                         commonValidatMessage(jsonResult.data);
@@ -26,7 +25,7 @@ $(() => {
                 });
 
         } else {
-            loadingHide();
+            setTimeout(loadingHide(), 2000);
         }
 
     });

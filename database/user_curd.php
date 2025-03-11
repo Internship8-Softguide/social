@@ -8,7 +8,7 @@ function register($mysqli, $name, $email, $password)
         $mysqli->query($sql);
         return ['message' => "Success user Register",'result' => true];
     } catch (Exception $th) {
-        return ['message' => $th->getMessage(),'result' => false];
+        return ['message' => $th->getMessage(),'result' => false,'errCode' => $th->getCode()];
     }
 }
 function create_user($mysqli, $name, $email, $password, $phone, $bio, $photo, $address, $dob, $gender)
