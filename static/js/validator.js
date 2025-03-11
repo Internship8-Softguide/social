@@ -5,7 +5,7 @@ const validate = (elementArr) => {
         let status = true;
         const element = elementArr[index];
         let rules = element.attr("validate");
-        let ruleArr = rules.split("|");
+        let ruleArr = rules.split("|");        
         for (let i = 0; i < ruleArr.length; i++) {
             let number = 0;
             if (ruleArr[i].includes(":")) {
@@ -83,17 +83,7 @@ const max = (element, number) => {
 }
 
 const password = (element, number) => {
-    return true;
-}
-
-
-const commonValidatMessage = (obj) => {
-    for (let key in obj) {
-        if (key == 'status') continue;
-        if (obj.hasOwnProperty(key)) {
-            console.log($("#" + key));
-        }
-    }
+    return false;
 }
 
 const file = (element) => {
@@ -111,5 +101,18 @@ const file = (element) => {
         return false;
     }
     return true;
+};
+
+const numberCheck = (element) =>{
+    console.log("checck number")
+    let value = element.val();
+    var labelText = $('label[for="' + element.attr("id") + '"]').text();
+   if(element.attr("id") === "number"){
+   if( !/^\d+(\.\d+)?$/.test(value)){
+    $('#'+element.attr("id")+"Err").text(labeText + " Only numbers are allowed!");
+    return false;
+   }
+   return true;
+}
 };
 
