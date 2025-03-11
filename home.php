@@ -28,7 +28,7 @@
     </div>
 </nav>
     <div class="main-content">
-        <h3>Your New Posts</h3>
+        <!-- <h3>Your New Posts</h3> -->
         <div class="new-post-container" data-bs-toggle="modal" data-bs-target="#postModal">
             <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
             <button class="new-post-button">Add a post</button>
@@ -82,15 +82,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="file" class="form-control" name="post-photo" id="">
+                        <input type="file" class="form-control" name="post-photo" id="file" validate="file" />
+                        <span class="validate" id="fileErr"></span>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="What's on your mind?"></textarea>
+                        <textarea class="form-control" rows="4" placeholder="What's on your mind?" validate="max:200" id="textField"></textarea>
+                        <span class="validate" id="textFieldErr"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn" style="background-color: #8a57e9; color: white;">Post</button>
+                    <button type="button" class="btn" style="background-color: #8a57e9; color: white;" id="postBtn">Post</button>
                 </div>
             </div>
         </div>

@@ -28,16 +28,15 @@ const validate = (elementArr) => {
                 case "number":
                     status = number(element);
                     break;
-                case "file":
-                    status = file(element);
-                    break;
                 case "min:" + number:
                     status = min(element, number);
                     break;
                 case "max:" + number:
                     status = max(element, number);
                     break;
-
+                case "file":
+                    status = file(element);
+                    break;
                 default:
                     break;
             }
@@ -96,3 +95,21 @@ const commonValidatMessage = (obj) => {
         }
     }
 }
+
+const file = (element) => {
+    let file = element[0].files[0];
+    let text = $('#textField').val().trim();
+    let fileName = file ? file.name : "";
+    let fileExtension = fileName.split('.').pop().toLowerCase();
+    let allowedExtensions = ['jpg', 'jpeg', 'png'];
+    if (!file && !text) {
+        $("#postCreateErr").text("Either a file or text is required.");
+        return false;
+    }
+    if (file && !allowedExtensions.includes(fileExtension)) {
+        $('#fileErr').text("File type must be JPG, JPEG, or PNG.");
+        return false;
+    }
+    return true;
+};
+
