@@ -321,19 +321,7 @@ i {
   cursor: pointer;
 }
 
-.interest-btn {
-  background: #9b59b6;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
 .interest {
-  background: #e0e0e0;
   padding: 20px;
   border-radius: var(--RADIUS);
   margin-top: 5px;
