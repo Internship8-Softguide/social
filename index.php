@@ -4,7 +4,7 @@ if (isset($_COOKIE["user"])) {
 }
 
 
-require_once ("./layout/header.php") ?>
+require_once("./layout/header.php") ?>
 
 <div class="login-card">
     <h1 class="header">Welcome Back</h1>
@@ -30,5 +30,5 @@ require_once ("./layout/header.php") ?>
     </div>
     <button class="login-btn" id="signIn">Sign in</button>
 </div>
-<?php require_once ("./layout/footer.php") ?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/index.js"></script>

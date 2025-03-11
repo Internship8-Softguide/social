@@ -232,7 +232,7 @@ input[type="checkbox"] {
   flex: 1;
   padding: 20px;
 }
-.content {
+.user-detail {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -240,14 +240,12 @@ input[type="checkbox"] {
   background-color: var(--BACKGROUND);
 }
 
-.container {
+.user-detail-card {
   width: 800px;
   background: #fff;
   border-radius: var(--RADIUS);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   display: flex;
-  overflow: hidden;
-  flex-direction: row;
 }
 
 .userdetailimg {
@@ -265,20 +263,14 @@ input[type="checkbox"] {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  object-fit: cover;
   border: 4px solid #9b59b6;
-}
-
-.userdetailimg h1 {
-  font-size: 20px;
-  color: #333;
 }
 
 .userdetailimg p {
   font-size: 14px;
 }
 
-.row {
+.aboutdetail {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -295,15 +287,8 @@ input[type="checkbox"] {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-h5,
-h2 {
-  color: #9b59b6;
-  margin-bottom: 8px;
-}
-
 .about p {
   font-size: 14px;
-  color: #555;
 }
 
 .info {
@@ -322,9 +307,7 @@ h2 {
 .info h4 {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #555;
-  gap: 5px;
+  font-size: 14px; 
 }
 
 .info p {
@@ -333,43 +316,16 @@ h2 {
   gap: 5px;
   font-size: 14px;
 }
-
 i {
   color: #9b59b6;
   cursor: pointer;
 }
 
-i:hover {
-  color: #f78fb3;
-}
-
-.interest-btn {
-  background: #9b59b6;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.interest-btn:hover {
-  background: #8e44ad;
-}
-
 .interest {
-  background: #e0e0e0;
-  color: #333;
   padding: 20px;
   border-radius: var(--RADIUS);
   margin-top: 5px;
   text-align: center;
-}
-
-.extra-info p {
-  font-size: 14px;
-  color: #555;
 }
 
 .post-container {
