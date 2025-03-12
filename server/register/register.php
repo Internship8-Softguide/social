@@ -15,8 +15,6 @@ if ($requestMethod == 'POST') {
 
     if ($name == '') {
         $nameErr = "Name can not be blank";
-    } elseif (is_numeric($name)) {
-        $nameErr = "Name can't be number";
     } elseif (strlen($name) > 10 && strlen($name) < 3) {
         $nameErr = "Name must be between 3 characters and 10 characters.";
     }
@@ -29,14 +27,19 @@ if ($requestMethod == 'POST') {
 
     if ($password == '') {
         $passwordErr = "Password can not be blank";
-    } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $password)) {
+    } elseif (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/', $password)) {
         $passwordErr = " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character";
     }
 
     if ($confirm == '') {
         $confirmErr = "Password can not be blank";
-    } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $confirm)) {
+    } elseif (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/', $confirm)) {
         $confirmErr = " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character";
+    }
+
+    if($password !== $confirm){
+        $passwordErr = "Password and Confirm Password does not match.";
+        $confirmErr = "Password and Confirm Password does not match.";
     }
 
     $hashPassword = password_hash($password, PASSWORD_ARGON2ID);

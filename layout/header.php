@@ -11,7 +11,7 @@ require_once("./database/index.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./static/css/style.css">
-    <script src="./static/js/app.js"></script>
+    <script defer src="./static/js/app.js"></script>
     <script src="./static/js/api.js"></script>
     <script src="./static/js/jquery.js"></script>
     <script src="./static/js/validator.js"></script>

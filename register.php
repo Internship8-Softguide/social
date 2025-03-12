@@ -11,19 +11,19 @@ require_once("./layout/header.php") ?>
         <p class="sub-header">Please enter your details</p>
         <div class="form-group">
             <label for="name" class="label">Your name</label>
-            <input type="text" name="name" id="name" class="input" validate="">
+            <input type="text" name="name" id="name" class="input" validate="blank|min:3|max:10">
             <span class="validate" id="nameErr"></span>
         </div>
         <div class="form-group">
             <label for="email" class="label">Your email</label>
-            <input type="text" name="email" id="email" class="input" validate="">
+            <input type="text" name="email" id="email" class="input" validate="blank|email">
             <span class="validate" id="emailErr"></span>
         </div>
         <div class="form-group">
             <label for="password" class="label">Password</label>
             <div class="input-password">
                 <input type="password" name="password" id="password" validate="">
-                <span><i class="fa-solid fa-eye-slash"></i></span>
+                <span><i class="fa-solid fa-eye-slash" id="passwordIcon"></i></span>
             </div>
             <span class="validate" id="passwordErr"></span>
         </div>
@@ -31,7 +31,7 @@ require_once("./layout/header.php") ?>
             <label for="confirm" class="label">Confirm password</label>
             <div class="input-password">
                 <input type="password" name="confirm" id="confirm" validate="">
-                <span><i class="fa-solid fa-eye-slash"></i></span>
+                <span><i class="fa-solid fa-eye-slash" id="confirmIcon"></i></span>
             </div>
             <span class="validate" id="confirmErr"></span>
         </div>
