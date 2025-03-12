@@ -25,8 +25,7 @@ $(() => {
                             commonValidatMessage(jsonResult.data);
                         }
                         loadingHide();
-                    });
-
+                    })
             } else {
                 loadingHide();
             }
