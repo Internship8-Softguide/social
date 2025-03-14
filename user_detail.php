@@ -1,12 +1,27 @@
 <?php require_once("./layout/auth.php") ?>
 <?php require_once("./layout/header.php") ?>
+<?php
+if (isset($_COOKIE['user'])) {
+    $userData = json_decode($_COOKIE['user'], true);
+    if ($userData !== null) {
+        $userId   = $userData['data']['data']['id'];
+        $username = $userData['data']['data']['name'];
+        $email    = $userData['data']['data']['email'];
+    } else {
+        echo "Failed to decode user data.";
+    }
+    $user = get_user_by_id($mysqli, $userId);
+}
+?>
+
+
 <div class="user-detail">
     <div class="user-detail-card">
 
         <!-- Left Side info -->
         <div class="userdetailimg">
             <img src="./static/image/userprofile.jpg" alt="Profile Picture" class="user-img">
-            <h2>Angelar</h2>
+            <h2><?php echo htmlspecialchars($username); ?></h2>
             <h3>Bio</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s. lorem*300</p>
@@ -31,12 +46,12 @@
                 <h2>Details</h2>
                 <div class="info">
                     <h4><i class="fa-solid fa-user"></i> Name</h4>
-                    <p>angelar <i class="fa-solid fa-pen"></i></p>
+                    <p><?php echo htmlspecialchars($username); ?> <i class="fa-solid fa-pen"></i></p>
                 </div>
 
                 <div class="info">
                     <h4><i class="fa-solid fa-envelope"></i> Email</h4>
-                    <p>angelar@gmail.com <i class="fa-solid fa-pen"></i></p>
+                    <p><?php echo htmlspecialchars($email); ?> <i class="fa-solid fa-pen"></i></p>
                 </div>
                 <div class="info">
                     <h4><i class="fa-solid fa-lock"></i> Pass</h4>
