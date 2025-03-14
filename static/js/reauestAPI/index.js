@@ -43,5 +43,5 @@ $(() => {
             icon.classList.remove("fa-eye");
             icon.classList.add("fa-eye-slash");
         }
-    })  
+    })
 });

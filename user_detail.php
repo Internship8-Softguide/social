@@ -1,12 +1,12 @@
-<?php require_once("./layout/auth.php") ?>
-<?php require_once("./layout/header.php") ?>
+<?php require_once ("./layout/auth.php") ?>
+<?php require_once ("./layout/header.php") ?>
 <?php
 if (isset($_COOKIE['user'])) {
     $userData = json_decode($_COOKIE['user'], true);
     if ($userData !== null) {
-        $userId   = $userData['data']['data']['id'];
-        $username = $userData['data']['data']['name'];
-        $email    = $userData['data']['data']['email'];
+        $userId   = $userData['data']['id'];
+        $username = $userData['data']['name'];
+        $email    = $userData['data']['email'];
     } else {
         echo "Failed to decode user data.";
     }
@@ -78,5 +78,5 @@ if (isset($_COOKIE['user'])) {
         </div>
     </div>
 </div>
-<?php require_once("./layout/footer.php") ?>
+<?php require_once ("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/user_detail.js"></script>
