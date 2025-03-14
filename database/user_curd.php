@@ -72,3 +72,21 @@ function delete_user($mysqli, $id)
         echo "Can't Delete User";
     }
 }
+function login($mysqli, $email, $password)
+{
+    try {
+        $sql = "SELECT * FROM `users` WHERE `email`='$email'";
+        $result = $mysqli->query($sql);
+        if ($result->num_rows === 0) {
+            return ['message' => "invalidEmail", 'result' => false];
+        }
+        $user = $result->fetch_assoc();
+        if (!password_verify($password, $user['password'])) {
+            return ['message' => "invalidPassword", 'result' => false];
+        }
+
+        return ['message' => "Success user Register", 'result' => true];
+    } catch (Exception $e) {
+        return ['status' => 500, 'message' => $e->getMessage(), 'errorCode' => $e->getCode()];
+    }
+}
