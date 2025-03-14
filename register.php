@@ -23,15 +23,15 @@ require_once ("./layout/header.php") ?>
             <label for="password" class="label">Password</label>
             <div class="input-password">
                 <input type="password" name="password" id="password" validate="blank|password">
-                <span><i class="fa-solid fa-eye-slash"></i></span>
+                <span><i class="fa-solid fa-eye-slash" id="passwordIcon"></i></span>
             </div>
             <span class="validate" id="passwordErr"></span>
         </div>
         <div class="form-group">
             <label for="confirm" class="label">Confirm password</label>
             <div class="input-password">
-                <input type="password" name="confirm" id="confirm" validate="blank|password|confirm">
-                <span><i class="fa-solid fa-eye-slash"></i></span>
+                <input type="password" name="confirm" id="confirm" validate="blank|password">
+                <span><i class="fa-solid fa-eye-slash" id="confirmIcon"></i></span>
             </div>
             <span class="validate" id="confirmErr"></span>
         </div>

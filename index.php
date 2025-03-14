@@ -4,7 +4,7 @@ if (isset($_COOKIE["user"])) {
 }
 
 
-require_once ("./layout/header.php") ?>
+require_once("./layout/header.php") ?>
 
 <div class="login-card">
     <h1 class="header">Welcome Back</h1>
@@ -18,7 +18,7 @@ require_once ("./layout/header.php") ?>
         <label for="password" class="label">Password</label>
         <div class="input-password">
             <input type="password" id="password" validate="blank|password" />
-            <span><i class="fa-solid fa-eye-slash"></i></span>
+            <span id="togglePassword"><i class=" fa-solid fa-eye-slash"></i></span>
         </div>
         <span class="validate" id="passwordErr"></span>
     </div>
@@ -31,5 +31,5 @@ require_once ("./layout/header.php") ?>
     <button class="login-btn" id="signIn">Sign in</button>
     <p class="account-login">Create an account?<a href="./register.php">Register here!</a></p>
 </div>
-<?php require_once ("./layout/footer.php") ?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/index.js"></script>
