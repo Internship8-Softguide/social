@@ -26,7 +26,7 @@ if ($requestMethod === 'POST') {
             $result = changeName($mysqli, $id, $data);
             break;
         case 'relationship':
-            $result = changeName($mysqli, $id, $data);
+            $result = changeRelationship($mysqli, $id, $data);
             break;
         case 'location':
             $result = changeName($mysqli, $id, $data);
