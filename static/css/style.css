@@ -307,7 +307,7 @@ input[type="checkbox"] {
 .info h4 {
   display: flex;
   align-items: center;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 .info p {
@@ -406,4 +406,10 @@ i {
   width: 100vw;
   height: 100vh;
   z-index: 999;
+}
+.edit-input {
+  padding: 5px;
+  border: 1px solid var(--PRIMARYCOLOR);
+  border-radius: var(--RADIUS);
+  outline: none;
 }

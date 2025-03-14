@@ -33,3 +33,19 @@ function setCookie(value) {
 function removeCookie() {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 }
+
+function getCookie() {
+    const name = "user=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+
+        if (c.indexOf(name) === 0) {
+            return JSON.parse(c.substring(name.length, c.length));
+        }
+    }
+
+    return "";
+}

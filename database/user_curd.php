@@ -46,9 +46,21 @@ function get_user_by_id($mysqli, $id)
 {
     try {
         $sql = "SELECT * FROM `users` WHERE `id`=$id";
-        $mysqli->query($sql);
+        $result = $mysqli->query($sql);
+        return ['data' => $result->fetch_assoc(), 'result' => true];
     } catch (Exception $th) {
-        echo "Error in Selecting User";
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+
+function changeName($mysqli, $id, $name)
+{
+    try {
+        $sql = "UPDATE `users` SET `name`='$name' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user Register", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
     }
 }
 
