@@ -1,32 +1,31 @@
+<?php require_once("./layout/auth.php") ?>
+<?php require_once("./layout/header.php") ?>
+<div class="home-background">
 
-<?php require_once ("./layout/auth.php")?>
-<?php require_once ("./layout/header.php")?>
-    <div class="home-background">
-    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        
-        <a class="navbar-brand ms-3" href="#">SG-Social</a>
+        <div class="container-fluid">
 
-        <!-- <div class="search-bar mx-auto">
+            <a class="navbar-brand ms-3" href="#">SG-Social</a>
+
+            <!-- <div class="search-bar mx-auto">
             <input type="text" class="form-control" placeholder="Search">
             <button class="btn" type="button">Search</button>
         </div> -->
-        
-        <div class="user-dropdown ms-auto">
-        <!-- <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
+
+            <div class="user-dropdown ms-auto">
+                <!-- <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
         <i class="fas fa-comments fs-5 cursor-pointer me-5" role="button"></i> -->
-            <div class="dropdown">
-                <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" id="logout">Logout</a></li>
-              </ul>
+                <div class="dropdown">
+                    <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" id="logout">Logout</a></li>
+                    </ul>
+                </div>
+                <span class="me-5">User Name</span>
             </div>
-            <span class="me-5">User Name</span>
         </div>
-    </div>
-</nav>
+    </nav>
     <div class="main-content">
         <!-- <h3>Your New Posts</h3> -->
         <div class="new-post-container" data-bs-toggle="modal" data-bs-target="#postModal">
@@ -98,19 +97,19 @@
         </div>
     </div>
 
-    </div>
+</div>
 
-<?php require_once ("./layout/footer.php")?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/home.js"></script>
 
 <script>
-   $(document).ready(function () {
-    $(".comment-reaction").on("click", function () {
-        let postContainer = $(this).closest(".post-container");
-        let commentSection = postContainer.find(".comment-section");
+    $(document).ready(function() {
+        $(".comment-reaction").on("click", function() {
+            let postContainer = $(this).closest(".post-container");
+            let commentSection = postContainer.find(".comment-section");
 
-        if (commentSection.length === 0) {
-            commentSection = $(`
+            if (commentSection.length === 0) {
+                commentSection = $(`
                 <div class="comment-section">
                     <div class="comments-list">
                     <p>This is comment One </p> 
@@ -119,21 +118,19 @@
                     <input type="text" class="comment-input" placeholder="Write a comment...">
                 </div>
             `);
-            postContainer.append(commentSection);
-        }
+                postContainer.append(commentSection);
+            }
 
-        let existingComments = commentSection.find(".comments-list").children().length;
+            let existingComments = commentSection.find(".comments-list").children().length;
 
-        if (existingComments > 0) {
-           
-            commentSection.find(".comments-list").show();
-        } else {
-            commentSection.find(".comments-list").hide();
-        }
+            if (existingComments > 0) {
 
-        commentSection.toggle();
+                commentSection.find(".comments-list").show();
+            } else {
+                commentSection.find(".comments-list").hide();
+            }
+
+            commentSection.toggle();
+        });
     });
-});
-
 </script>
-

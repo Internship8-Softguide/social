@@ -6,10 +6,10 @@ header('Content-Type: application/json');
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 if ($requestMethod == 'POST') {
     $inputData = json_decode(file_get_contents('php://input'), true);
-    $name  = $mysqli->real_escape_string($inputData['name']);
-    $email  = $mysqli->real_escape_string($inputData['email']);
-    $password  = $mysqli->real_escape_string($inputData['password']);
-    $confirm  = $mysqli->real_escape_string($inputData['confirm']);
+    $name  = $mysqli->real_escape_string(trim($inputData['name']));
+    $email  = $mysqli->real_escape_string(trim($inputData['email']));
+    $password  = $mysqli->real_escape_string(trim($inputData['password']));
+    $confirm  = $mysqli->real_escape_string(trim($inputData['confirm']));
 
     $nameErr = $emailErr = $passwordErr =  $confirmErr = '';
 
@@ -37,7 +37,7 @@ if ($requestMethod == 'POST') {
         $confirmErr = " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character";
     }
 
-    if($password !== $confirm){
+    if ($password !== $confirm) {
         $passwordErr = "Password and Confirm Password does not match.";
         $confirmErr = "Password and Confirm Password does not match.";
     }
@@ -56,7 +56,7 @@ if ($requestMethod == 'POST') {
             ]);
         } else {
             if ($result['errCode'] == 1062) {
-                $emailErr = "Email is alerady have been used try with another!";
+                $emailErr = "Email alerady have been used try with another!";
             }
             echo json_encode([
                 'status' => 500,
