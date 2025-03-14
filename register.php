@@ -3,7 +3,7 @@ if (isset($_COOKIE["user"])) {
     header("location:home.php");
 }
 
-require_once("./layout/header.php") ?>
+require_once ("./layout/header.php") ?>
 
 <body>
     <div class="login-card">
@@ -22,7 +22,7 @@ require_once("./layout/header.php") ?>
         <div class="form-group">
             <label for="password" class="label">Password</label>
             <div class="input-password">
-                <input type="password" name="password" id="password" validate="">
+                <input type="password" name="password" id="password" validate="blank|password">
                 <span><i class="fa-solid fa-eye-slash" id="passwordIcon"></i></span>
             </div>
             <span class="validate" id="passwordErr"></span>
@@ -30,7 +30,7 @@ require_once("./layout/header.php") ?>
         <div class="form-group">
             <label for="confirm" class="label">Confirm password</label>
             <div class="input-password">
-                <input type="password" name="confirm" id="confirm" validate="">
+                <input type="password" name="confirm" id="confirm" validate="blank|password">
                 <span><i class="fa-solid fa-eye-slash" id="confirmIcon"></i></span>
             </div>
             <span class="validate" id="confirmErr"></span>
@@ -39,5 +39,5 @@ require_once("./layout/header.php") ?>
         <p class="account-login">Already have an account?<a href="./index.php">Login here!</a></p>
     </div>
 
-    <?php require_once("./layout/footer.php") ?>
+    <?php require_once ("./layout/footer.php") ?>
     <script src="./static/js/reauestAPI/register.js"></script>
