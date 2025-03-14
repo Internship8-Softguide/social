@@ -6,9 +6,9 @@ function register($mysqli, $name, $email, $password)
         $sql = "INSERT INTO `users`(`name`,`email`,`password`) 
         VALUES ('$name','$email','$password')";
         $mysqli->query($sql);
-        return ['message' => "Success user Register",'result' => true];
+        return ['message' => "Success user Register", 'result' => true];
     } catch (Exception $th) {
-        return ['message' => $th->getMessage(),'result' => false,'errCode' => $th->getCode()];
+        return ['message' => $th->getMessage(), 'result' => false, 'errCode' => $th->getCode()];
     }
 }
 function create_user($mysqli, $name, $email, $password, $phone, $bio, $photo, $address, $dob, $gender)
@@ -57,9 +57,9 @@ function get_user_email_by_email($mysqli, $email): array
     try {
         $sql = "SELECT * FROM `users` WHERE `email`='$email'";
         $result = $mysqli->query($sql);
-        return ['data' => $result->fetch_assoc(),'result' => true];
+        return ['data' => $result->fetch_assoc(), 'result' => true];
     } catch (Exception $th) {
-        return ['message' => $th->getMessage(),'result' => false];
+        return ['message' => $th->getMessage(), 'result' => false];
     }
 }
 
@@ -70,5 +70,23 @@ function delete_user($mysqli, $id)
         $mysqli->query($sql);
     } catch (Exception $th) {
         echo "Can't Delete User";
+    }
+}
+function login($mysqli, $email, $password)
+{
+    try {
+        $sql = "SELECT * FROM `users` WHERE `email`='$email'";
+        $result = $mysqli->query($sql);
+        if ($result->num_rows === 0) {
+            return ['message' => "invalidEmail", 'result' => false];
+        }
+        $user = $result->fetch_assoc();
+        if (!password_verify($password, $user['password'])) {
+            return ['message' => "invalidPassword", 'result' => false];
+        }
+
+        return ['message' => "Success user Register", 'result' => true];
+    } catch (Exception $e) {
+        return ['status' => 500, 'message' => $e->getMessage(), 'errorCode' => $e->getCode()];
     }
 }
