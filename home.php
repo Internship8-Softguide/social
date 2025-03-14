@@ -6,7 +6,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
 
-            <a class="navbar-brand ms-3" href="#">SG-Social</a>
+            <a class="navbar-brand ms-3" href="./home.php">SG-Social</a>
 
             <!-- <div class="search-bar mx-auto">
             <input type="text" class="form-control" placeholder="Search">
@@ -19,7 +19,7 @@
                 <div class="dropdown">
                     <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="./user_detail.php">Profile</a></li>
                         <li><a class="dropdown-item" id="logout">Logout</a></li>
                     </ul>
                 </div>

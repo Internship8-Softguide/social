@@ -35,12 +35,13 @@ if ($requestMethod === 'POST') {
             # code...
             break;
     }
+    $data =  get_user_by_id($mysqli, $id);
     if ($result['result']) {
         echo json_encode([
             'status' => 200,
-            'message' => 'Success message'
+            'message' => 'Success message',
+            'data' => $data
         ]);
     } else {
-
     }
 }
