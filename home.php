@@ -1,5 +1,6 @@
 <?php require_once("./layout/auth.php") ?>
 <?php require_once("./layout/header.php") ?>
+
 <?php
 if (isset($_COOKIE['user'])) {
     $userData = json_decode($_COOKIE['user'], true);
@@ -28,11 +29,13 @@ if (isset($_COOKIE['user'])) {
                 <div class="dropdown">
                     <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
+
                         <li><a class="dropdown-item" href="user_detail.php">Profile</a></li>
                         <li><a class="dropdown-item" id="logout">Logout</a></li>
                     </ul>
                 </div>
                 <span class="me-5"><?php echo htmlspecialchars($username); ?></span>
+
             </div>
         </div>
     </nav>
