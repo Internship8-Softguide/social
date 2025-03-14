@@ -13,7 +13,24 @@ function get_posts($mysqli)
 {
     try {
         $sql = "SELECT * FROM posts";
-        $mysqli->query($sql);
+        return   $mysqli->query($sql);
+    } catch (Exception $e) {
+        echo "Can not view posts";
+    }
+}
+function get_posts_and_users($mysqli)
+{
+    try {
+        $sql = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id";
+        $result =  $mysqli->query($sql);
+        if ($result === false) {
+            throw new Exception("Query failed");
+        }
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
     } catch (Exception $e) {
         echo "Can not view posts";
     }
