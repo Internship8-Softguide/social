@@ -25,6 +25,9 @@ if ($requestMethod === 'POST') {
         case 'edu':
             $result = changeName($mysqli, $id, $data);
             break;
+        case 'phone':
+            $result = changePhone($mysqli, $id, $data);
+            break;
         case 'relationship':
             $result = changeName($mysqli, $id, $data);
             break;

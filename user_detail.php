@@ -1,5 +1,5 @@
-<?php require_once ("./layout/auth.php") ?>
-<?php require_once ("./layout/header.php") ?>
+<?php require_once("./layout/auth.php") ?>
+<?php require_once("./layout/header.php") ?>
 <?php
 $userId = $username = $email = $edu = $rs = $phone = $location = "";
 $isMe = false;
@@ -16,10 +16,10 @@ if (isset($_COOKIE['user'])) {
         $userId   = $userData['data']['id'];
         $username = $userData['data']['name'];
         $email    = $userData['data']['email'];
+        $phone    = $userData['data']['phone'];
     } else {
         echo "Failed to decode user data.";
     }
-
 }
 
 ?>
@@ -27,7 +27,6 @@ if (isset($_COOKIE['user'])) {
 
 <div class="user-detail">
     <div class="user-detail-card">
-
         <!-- Left Side info -->
         <div class="userdetailimg">
             <img src="./static/image/userprofile.jpg" alt="Profile Picture" class="user-img">
@@ -48,7 +47,7 @@ if (isset($_COOKIE['user'])) {
         <div class="aboutdetail">
             <div class="about">
                 <div style="display: flex;justify-content: space-between;align-items: center;">
-                    <h2>About </h2><i class="fa-solid fa-edit"></i> <i class="fa-solid fa-check" style="display: none;"></i> 
+                    <h2>About </h2><i class="fa-solid fa-edit"></i> <i class="fa-solid fa-check" style="display: none;"></i>
                 </div>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s.</p>
@@ -58,51 +57,58 @@ if (isset($_COOKIE['user'])) {
                 <h2>Details</h2>
                 <div class="info">
                     <h4><i class="fa-solid fa-user"></i> Name</h4>
-                    <p type="name"><?php echo htmlspecialchars($username); ?> <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="name"><?php echo htmlspecialchars($username); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
 
                 <div class="info">
                     <h4><i class="fa-solid fa-envelope"></i> Email</h4>
-                    <p type="email"><?php echo htmlspecialchars($email); ?> <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="email"><?php echo htmlspecialchars($email); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
                 <div class="info">
                     <h4><i class="fa-solid fa-lock"></i> Pass</h4>
-                    <p type="password">******** <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="password">********
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
                 <div class="info">
                     <h4><i class="fa-solid fa-graduation-cap"></i> Edu</h4>
-                    <p type="edu"><?php echo htmlspecialchars($edu); ?> <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="edu"><?php echo htmlspecialchars($edu); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
                 <div class="info">
                     <h4><i class="fa-solid fa-heart"></i> Relationship </h4>
-                    <p type="relationship"><?php echo htmlspecialchars($rs); ?><?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="relationship"><?php echo htmlspecialchars($rs); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
 
                 <div class="info">
                     <h4><i class="fa-solid fa-phone"></i> Phone </h4>
-                    <p type="phone"><?php echo htmlspecialchars($phone); ?> <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="phone"><?php echo htmlspecialchars($phone); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
                 <div class="info">
                     <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
-                    <p type="location"><?php echo htmlspecialchars($location); ?> <?php if ($isMe) {
-                        echo '<i class="fa-solid fa-pen"></i>';
-                    } ?></p>
+                    <p type="location"><?php echo htmlspecialchars($location); ?>
+                        <?php if ($isMe) {
+                            echo '<i class="fa-solid fa-pen"></i>';
+                        } ?></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php require_once ("./layout/footer.php") ?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/userDetail.js"></script>
