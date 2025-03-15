@@ -3,7 +3,6 @@ if (isset($_COOKIE["user"])) {
     header("location:home.php");
 }
 
-
 require_once("./layout/header.php") ?>
 
 <div class="login-card">

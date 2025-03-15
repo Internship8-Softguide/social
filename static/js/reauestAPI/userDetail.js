@@ -45,21 +45,21 @@ $(() => {
                 '">'
         );
         parentP.html(input);
+        input.focus();
+        let valueLength = input.val().length;
+        input[0].setSelectionRange(valueLength, valueLength);
     });
 
     const resetInput = () => {
         let input = $(".info p input");
-
         for (let i = 0; i < input.length; i++) {
             const element = input[i];
             const parent = $(element).parent();
-
             parent
                 .empty()
                 .append(
                     element.value.trim() + "<i class='fa-solid fa-pen'></i>"
                 );
-
             parent.find(".fa-pen").on("click", function () {
                 resetInput();
                 let parentP = $(this).parent();
@@ -75,6 +75,7 @@ $(() => {
 
     $(".info").on("change", "p input", function () {
         const parentElement = $(this).parent();
+        console.log(parentElement);
         const inputValue = $(this).val();
         const type = parentElement.attr("type");
         let request = {

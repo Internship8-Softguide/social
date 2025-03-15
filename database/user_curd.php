@@ -63,6 +63,16 @@ function changeName($mysqli, $id, $name)
         return ['message' => $th->getMessage(), 'result' => false];
     }
 }
+function changePhone($mysqli, $id, $phone)
+{
+    try {
+        $sql = "UPDATE `users` SET `phone`='$phone' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user phone edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
 
 function get_user_email_by_email($mysqli, $email): array
 {
