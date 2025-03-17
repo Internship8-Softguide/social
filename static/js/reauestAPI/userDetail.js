@@ -59,8 +59,8 @@ $(() => {
         const inputValue = $(this).val();
         const type = parentElement.attr('type');
         let request = {
-            id: userCookie.data.id,
-            data: inputValue,
+            id  : userCookie.data.id,
+            data: inputValue, 
             type: type
         };
 

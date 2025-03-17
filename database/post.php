@@ -1,12 +1,13 @@
 <?php
 
-function create_post($mysqli, $title, $content, $user_id, $postImage)
+function create_post($mysqli, $title, $user_id, $postImage)
 {
     try {
-        $sql = "INSERT INTO `posts`(`title`,`content`, `user_id`, `postImage`) VALUES ('$title', '$content', $user_id, '$postImage')";
+        $sql = "INSERT INTO `posts`(`title`, `user_id`, `postImage`) VALUES ('$title', $user_id, '$postImage')";
         $mysqli->query($sql);
-    } catch (Exception $e) {
-        echo "Can not create post";
+        return ['message' => "Success user Register", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false, 'errCode' => $th->getCode()];
     }
 }
 function get_posts($mysqli)

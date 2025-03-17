@@ -27,9 +27,8 @@ if (isset($_COOKIE['user'])) {
                 <!-- <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
         <i class="fas fa-comments fs-5 cursor-pointer me-5" role="button"></i> -->
                 <div class="dropdown">
-                    <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown">
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-
                         <li><a class="dropdown-item" href="user_detail.php">Profile</a></li>
                         <li><a class="dropdown-item" id="logout">Logout</a></li>
                     </ul>
@@ -71,6 +70,14 @@ if (isset($_COOKIE['user'])) {
                     <h6>User name</h6>
                     <small>10 mins ago</small>
                 </div>
+                <div class="dropdown">
+                    <span><i class="fa fa-ellipsis-v" data-bs-toggle="dropdown" id="postEditDropdown" aria-hidden="true"></i>
+                        <ul class="dropdown-menu" aria-labelledby="postEditDropdown">
+                            <li><a class="dropdown-item" href="">Edit Post</a></li>
+                            <li><a class="dropdown-item" href="" id="">Delete Post</a></li>
+                        </ul>
+                    </span>
+                </div>
             </div>
             <div class="post-text">
                 The MayKha! The most beautiful river.
@@ -94,11 +101,12 @@ if (isset($_COOKIE['user'])) {
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="file" class="form-control" name="post-photo" id="file" validate="file" />
+                    <span class="validate" id="postCreateErr"></span>
+                        <input type="file" class="form-control" name="file" id="file" validate="file" />
                         <span class="validate" id="fileErr"></span>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="What's on your mind?" validate="max:200" id="textField"></textarea>
+                        <textarea class="form-control" name="title" rows="4" placeholder="What's on your mind?" validate="file" id="textField"></textarea>
                         <span class="validate" id="textFieldErr"></span>
                     </div>
                 </div>

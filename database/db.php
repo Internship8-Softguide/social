@@ -58,10 +58,9 @@ function createTables($mysqli)
         $sql = "CREATE TABLE IF NOT EXISTS `posts`
         (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
-            `title` VARCHAR(225) NOT NULL,
-            `content` TEXT NOT NULL,
+            `title` VARCHAR(225),
             `user_id` INT NOT NULL,
-            `postImage` VARCHAR(225) NOT NULL,
+            `postImage` VARCHAR(225),
             `createdAt` TIMESTAMP DEFAULT NOW(),
             `updatedAt` TIMESTAMP DEFAULT NOW(),
             FOREIGN KEY (user_id) REFERENCES users(id)
