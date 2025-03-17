@@ -2,10 +2,10 @@ const validate = (elementArr) => {
     $(".validate").text("");
     let valid = true;
     for (let index = 0; index < elementArr.length; index++) {
-        let status    = true;
+        let status = true;
         const element = elementArr[index];
-        let rules     = element.attr("validate");
-        let ruleArr   = rules.split("|");
+        let rules = element.attr("validate");
+        let ruleArr = rules.split("|");
 
         for (let i = 0; i < ruleArr.length; i++) {
             let no = 0;
@@ -112,7 +112,7 @@ const password = (element, number) => {
     if (!regex.test(value)) {
         $("#" + element.attr("id") + "Err").text(
             labelText +
-                " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character"
+            " must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character"
         );
         return false;
     }
@@ -140,11 +140,11 @@ const confirm = (element) => {
     return true;
 };
 
-const file = (element) => { 
+const file = (element) => {
     if (element[0].files.length > 0) {
-        let file              = element[0].files[0];
-        let fileName          = file.name.toLowerCase();
-        let fileExtension     = fileName.split('.').pop();
+        let file = element[0].files[0];
+        let fileName = file.name.toLowerCase();
+        let fileExtension = fileName.split('.').pop();
         let allowedExtensions = ['jpg', 'jpeg', 'png'];
 
         if (!allowedExtensions.includes(fileExtension)) {
@@ -161,27 +161,8 @@ const file = (element) => {
 
         return false;
     }
-    return true;
 };
 
-const file = (element) => {
-    let file = element[0].files[0];
-    let text = $("#textField").val().trim();
-    let fileName = file ? file.name : "";
-    let fileExtension = fileName.split(".").pop().toLowerCase();
-    let allowedExtensions = ["jpg", "jpeg", "png"];
-    if (!file && !text) {
-        $("#postCreateErr").text("Either a file or text is required.");
-        return false;
-    }
-    if (file && !allowedExtensions.includes(fileExtension)) {
-        $("#fileErr").text("File type must be JPG, JPEG, or PNG.");
-        return false;
-
-    }
-    
-    return true;
-};
 
 
 const number = (element) => {

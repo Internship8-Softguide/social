@@ -22,7 +22,7 @@ $(() => {
             postFormData("./server/home/create_post.php", formData)
                 .then((jsonResult) => {
                     if (jsonResult.status == 200) {
-                        location.href = "home.php";
+                        // $("#close-modal").click()
                     } else {
                         commonValidatMessage(jsonResult);
                     }
@@ -176,4 +176,3 @@ $(() => {
     });
 });
 
-});

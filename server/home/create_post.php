@@ -3,7 +3,7 @@
 require_once("../../database/server.php");
 
 if (isset($_COOKIE['user'])) {
-    $userData = json_decode($_COOKIE['user'], true);    
+    $userData = json_decode($_COOKIE['user'], true);
     if ($userData !== null) {
         $user_id = $userData['data']['id'];
     }
@@ -11,7 +11,7 @@ if (isset($_COOKIE['user'])) {
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 if ($requestMethod == 'POST') {
-    $uploadDir = "../../static/image/uploads/"; 
+    $uploadDir = "../../static/image/uploads/";
     $textField = isset($_POST['textField']) ? $mysqli->real_escape_string($_POST['textField']) : "";
 
     if (!is_dir($uploadDir)) {
@@ -37,7 +37,7 @@ if ($requestMethod == 'POST') {
             if (move_uploaded_file($fileTmpPath, $targetFilePath)) {
                 create_post($mysqli, $textField, $user_id, $targetFilePath);
                 echo json_encode([
-                    "success"    => true,
+                    "status"    => 200,
                     "message"    => "File uploaded successfully.",
                     "file_name"  => $fileName,
                     "file_path"  => $targetFilePath,
@@ -52,10 +52,10 @@ if ($requestMethod == 'POST') {
             echo json_encode(["error" => $photoErr]);
             exit;
         }
-    } else if($textField != '') {
+    } elseif ($textField != '') {
         create_post($mysqli, $textField, $user_id, '');
         echo json_encode([
-            "success"    => true,
+            "status"    => 200,
             "message"    => "Post created successfully.",
             "file_name"  => '',
             "file_path"  => '',
