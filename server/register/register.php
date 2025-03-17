@@ -12,7 +12,7 @@ if ($requestMethod == 'POST') {
     $confirm  = $mysqli->real_escape_string(trim($inputData['confirm']));
 
     $nameErr = $emailErr = $passwordErr =  $confirmErr = '';
-
+ 
     if ($name == '') {
         $nameErr = "Name can not be blank";
     } elseif (strlen($name) > 10 && strlen($name) < 3) {

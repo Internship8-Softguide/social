@@ -79,9 +79,11 @@ $(() => {
         const inputValue = $(this).val();
         const type = parentElement.attr("type");
         let request = {
-            id: userCookie.data.id,
-            data: inputValue,
-            type: type,
+
+            id  : userCookie.data.id,
+            data: inputValue, 
+            type: type
+
         };
 
         postJson("./server/user/editUser.php", request).then((jsonResult) => {
