@@ -34,7 +34,7 @@ function createTables($mysqli)
             `password` VARCHAR(225) NOT NULL,
             `phone` VARCHAR(225) NOT NULL,
             `bio` VARCHAR(225) DEFAULT '',
-            `address` VARCHAR(225) DEFAULT '',
+            `location` VARCHAR(225) DEFAULT '',
             `date_of_birth` DATE NOT NULL,
             `photo` VARCHAR(225) NOT NULL,
             `gender` VARCHAR(225) NOT NULL,
@@ -60,9 +60,9 @@ function createTables($mysqli)
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `title` VARCHAR(225),
             `user_id` INT NOT NULL,
-            `postImage` VARCHAR(225),
-            `createdAt` TIMESTAMP DEFAULT NOW(),
-            `updatedAt` TIMESTAMP DEFAULT NOW(),
+            `postImage` VARCHAR(225) NOT NULL,
+            `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id)
 
         )";
@@ -102,8 +102,6 @@ function createTables($mysqli)
         die();
     }
 }
-
-
 $mysqli = getConnection();
 createDatabase($mysqli);
 createTables($mysqli);

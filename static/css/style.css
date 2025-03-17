@@ -147,6 +147,7 @@ input[type="checkbox"] {
   background-color: var(--BACKGROUND);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 .navbar {
   padding: 1rem 1rem;
