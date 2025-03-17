@@ -74,6 +74,17 @@ function changePhone($mysqli, $id, $phone)
     }
 }
 
+function changeLocation($mysqli, $id, $location)
+{
+    try {
+        $sql = "UPDATE `users` SET `location`='$location' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user location edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+
 function get_user_email_by_email($mysqli, $email): array
 {
     try {
