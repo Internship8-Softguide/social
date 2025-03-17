@@ -20,7 +20,7 @@ if ($requestMethod === 'POST') {
             $result = changeName($mysqli, $id, $data);
             break;
         case 'password':
-            $result = changeName($mysqli, $id, $data);
+            $result = changePassword($mysqli, $id, $data);
             break;
         case 'edu':
             $result = changeName($mysqli, $id, $data);
