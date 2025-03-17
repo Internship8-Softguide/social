@@ -100,9 +100,11 @@ const max = (element, number) => {
 };
 
 const password = (element, number) => {
+
     // let value     = element.val();
     // let regex     = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
     // var labelText = $('label[for="' + element.attr("id") + '"]').text();
+
     let value = element.val();
     let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
     var labelText = $('label[for="' + element.attr("id") + '"]').text();
@@ -118,6 +120,7 @@ const password = (element, number) => {
 };
 
 const confirm = (element) => {
+
     // let value     = element.val();
     // let password  = $("#password").val();
     // var labelText = $('label[for="' + element.attr("id") + '"]').text();
@@ -125,11 +128,13 @@ const confirm = (element) => {
     //     $("#" + element.attr("id") + "Err").text(labelText + " did not match!");
     //     return false;
     // }
+
     let value = element.val();
     let password = $("#password").val();
     var labelText = $('label[for="' + element.attr("id") + '"]').text();
     if (value !== password) {
         $("#" + element.attr("id") + "Err").text(labelText + " did not match!");
+
         return false;
     }
     return true;
@@ -153,6 +158,26 @@ const file = (element) => {
             $("#postCreateErr").text("Either a file or text is required.");
             return false;
         }
+
+        return false;
+    }
+    return true;
+};
+
+const file = (element) => {
+    let file = element[0].files[0];
+    let text = $("#textField").val().trim();
+    let fileName = file ? file.name : "";
+    let fileExtension = fileName.split(".").pop().toLowerCase();
+    let allowedExtensions = ["jpg", "jpeg", "png"];
+    if (!file && !text) {
+        $("#postCreateErr").text("Either a file or text is required.");
+        return false;
+    }
+    if (file && !allowedExtensions.includes(fileExtension)) {
+        $("#fileErr").text("File type must be JPG, JPEG, or PNG.");
+        return false;
+
     }
     
     return true;

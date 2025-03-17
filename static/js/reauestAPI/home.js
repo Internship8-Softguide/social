@@ -3,7 +3,6 @@ $(() => {
         removeCookie();
         location.reload();
     });
-
     const file = $("#file");
     const textField = $("#textField");
     const postCreateErr = $("#postCreateErr");
@@ -59,6 +58,7 @@ $(() => {
                 const minute = dbTime.getMinutes().toString().padStart(2, "0"); // Ensure two digits
                 const ampm = hour >= 12 ? "PM" : "AM";
                 hour = hour % 12 || 12; // Convert to 12-hour format, `0` becomes `12`
+
 
                 const nowYear = now.getFullYear();
                 const nowMonth = now.toLocaleString("en-US", { month: "long" });
@@ -176,3 +176,4 @@ $(() => {
     });
 });
 
+});
