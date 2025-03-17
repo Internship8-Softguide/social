@@ -74,6 +74,18 @@ function changePhone($mysqli, $id, $phone)
     }
 }
 
+function changePassword($mysqli, $id, $password)
+{
+    try {
+        $hashedPassword = password_hash($password, PASSWORD_ARGON2ID);
+        $sql = "UPDATE `users` SET `password`='$hashedPassword' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success User's password edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+
 function get_user_email_by_email($mysqli, $email): array
 {
     try {
