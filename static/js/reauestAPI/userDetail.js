@@ -17,7 +17,7 @@ $(() => {
             let request = {
                 id: userCookie.data.id,
                 data: textArea.val(),
-                type: "name",
+                type: "about",
             };
             postJson("./server/user/editUser.php", request).then(
                 (jsonResult) => {
@@ -39,9 +39,10 @@ $(() => {
     editPen.on("click", function (event) {
         resetInput();
         let parentP = $(this).parent();
+        let val = (parentP.attr("type") == 'password') ? "" : parentP.text().trim();
         let input = $(
             '<input type="text" class="edit-input" value="' +
-            parentP.text().trim() +
+            val +
             '">'
         );
         parentP.html(input);
@@ -74,7 +75,7 @@ $(() => {
         }
     };
 
-    $(".info").on("change", "p input", function () {
+    $(".info").on("change focusout", "p input", function () {
         const parentElement = $(this).parent();
         const inputValue = $(this).val();
         const type = parentElement.attr("type");
@@ -83,27 +84,29 @@ $(() => {
             data: inputValue,
             type: type,
         };
-        let val = (parentElement.attr("type") == 'password') ? "********" : inputValue.trim();
-        postJson("./server/user/editUser.php", request).then((jsonResult) => {
-            if (jsonResult.status == 200) {
-                parentElement
-                    .empty()
-                    .append(val + "<i class='fa-solid fa-pen'></i>");
-                setCookie(JSON.stringify(jsonResult.data));
-                parentElement.find(".fa-pen").on("click", function () {
-                    resetInput();
-                    let parentP = $(this).parent();
-                    let input = $(
-                        '<input type="text" class="edit-input" value="' +
-                        parentP.text().trim() +
-                        '">'
-                    );
-                    parentP.html(input);
-                });
-            } else {
-                commonValidatMessage(jsonResult.data);
-            }
-            loadingHide();
-        });
+        if (inputValue != '') {
+            let val = (parentElement.attr("type") == 'password') ? "********" : inputValue.trim();
+            postJson("./server/user/editUser.php", request).then((jsonResult) => {
+                if (jsonResult.status == 200) {
+                    parentElement
+                        .empty()
+                        .append(val + "<i class='fa-solid fa-pen'></i>");
+                    setCookie(JSON.stringify(jsonResult.data));
+                    parentElement.find(".fa-pen").on("click", function () {
+                        resetInput();
+                        let parentP = $(this).parent();
+                        let input = $(
+                            '<input type="text" class="edit-input" value="' +
+                            parentP.text().trim() +
+                            '">'
+                        );
+                        parentP.html(input);
+                    });
+                } else {
+                    commonValidatMessage(jsonResult.data);
+                }
+                loadingHide();
+            });
+        }
     });
 });
