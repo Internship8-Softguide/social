@@ -84,6 +84,17 @@ function changePhone($mysqli, $id, $phone)
     }
 }
 
+
+function changeLocation($mysqli, $id, $location)
+{
+    try {
+        $sql = "UPDATE `users` SET `location`='$location' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user location edit", 'result' => true];
+} catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
 function changePassword($mysqli, $id, $password)
 {
     try {
@@ -102,6 +113,7 @@ function changeRelationship($mysqli, $id, $relationship)
         $sql = "UPDATE `users` SET `relationship`='$relationship' where `id`=$id";
         $mysqli->query($sql);
         return ['message' => "Success user relationship", 'result' => true];
+
     } catch (Exception $th) {
         return ['message' => $th->getMessage(), 'result' => false];
     }
