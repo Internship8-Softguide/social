@@ -2,10 +2,11 @@ const validate = (elementArr) => {
     $(".validate").text("");
     let valid = true;
     for (let index = 0; index < elementArr.length; index++) {
-        let status = true;
+        let status    = true;
         const element = elementArr[index];
-        let rules = element.attr("validate");
-        let ruleArr = rules.split("|");
+        let rules     = element.attr("validate");
+        let ruleArr   = rules.split("|");
+
         for (let i = 0; i < ruleArr.length; i++) {
             let no = 0;
             if (ruleArr[i].includes(":")) {
@@ -99,6 +100,11 @@ const max = (element, number) => {
 };
 
 const password = (element, number) => {
+
+    // let value     = element.val();
+    // let regex     = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    // var labelText = $('label[for="' + element.attr("id") + '"]').text();
+
     let value = element.val();
     let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
     var labelText = $('label[for="' + element.attr("id") + '"]').text();
@@ -114,11 +120,45 @@ const password = (element, number) => {
 };
 
 const confirm = (element) => {
+
+    // let value     = element.val();
+    // let password  = $("#password").val();
+    // var labelText = $('label[for="' + element.attr("id") + '"]').text();
+    // if (value !== password) {
+    //     $("#" + element.attr("id") + "Err").text(labelText + " did not match!");
+    //     return false;
+    // }
+
     let value = element.val();
     let password = $("#password").val();
     var labelText = $('label[for="' + element.attr("id") + '"]').text();
     if (value !== password) {
         $("#" + element.attr("id") + "Err").text(labelText + " did not match!");
+
+        return false;
+    }
+    return true;
+};
+
+const file = (element) => { 
+    if (element[0].files.length > 0) {
+        let file              = element[0].files[0];
+        let fileName          = file.name.toLowerCase();
+        let fileExtension     = fileName.split('.').pop();
+        let allowedExtensions = ['jpg', 'jpeg', 'png'];
+
+        if (!allowedExtensions.includes(fileExtension)) {
+            $('#fileErr').text("File type must be JPG, JPEG, or PNG.");
+            return false;
+        }
+        return true;
+    } else {
+        let text = $('#textField').val().trim();
+        if (!text) {
+            $("#postCreateErr").text("Either a file or text is required.");
+            return false;
+        }
+
         return false;
     }
     return true;
@@ -137,9 +177,12 @@ const file = (element) => {
     if (file && !allowedExtensions.includes(fileExtension)) {
         $("#fileErr").text("File type must be JPG, JPEG, or PNG.");
         return false;
+
     }
+    
     return true;
 };
+
 
 const number = (element) => {
     let value = element.val();

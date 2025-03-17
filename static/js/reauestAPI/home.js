@@ -5,12 +5,38 @@ $(() => {
     });
     const file = $("#file");
     const textField = $("#textField");
-    $("#postBtn").on("click", () => {
-        const elements = [file, textField];
-        if (validate(elements)) {
-        }
-    });
+    const postCreateErr = $("#postCreateErr");
+    const fileErr = $("#fileErr");
+    const textFieldErr = $("#textFieldErr");
 
+    $("#postBtn").on("click", async () => {
+        postCreateErr.text("");
+        fileErr.text("");
+        textFieldErr.text("");
+
+        if (validate([file])) {
+            let formData = new FormData();
+            formData.append("file", file[0].files[0]);
+            formData.append("textField", textField.val());
+
+            postFormData("./server/home/create_post.php", formData)
+                .then((jsonResult) => {
+                    if (jsonResult.status == 200) {
+                        location.href = "home.php";
+                    } else {
+                        commonValidatMessage(jsonResult);
+                    }
+                    loadingHide();
+                })
+                .catch(() => {
+                    postCreateErr.text("An error occurred while creating the post.");
+                    loadingHide();
+                });
+        } else {
+            loadingHide();
+        }
+
+    });
     getAllData("./server/home/selectPost.php").then((jsonResult) => {
         if (jsonResult.status == "success") {
             for (let i = 0; i < jsonResult.data.length; i++) {
@@ -32,6 +58,7 @@ $(() => {
                 const minute = dbTime.getMinutes().toString().padStart(2, "0"); // Ensure two digits
                 const ampm = hour >= 12 ? "PM" : "AM";
                 hour = hour % 12 || 12; // Convert to 12-hour format, `0` becomes `12`
+
 
                 const nowYear = now.getFullYear();
                 const nowMonth = now.toLocaleString("en-US", { month: "long" });
@@ -108,10 +135,10 @@ $(() => {
                     .css({ "text-decoration": "none", color: "black" });
                 timeAgo = $("<small>").text(
                     getTimeDifference() +
-                        " " +
-                        formattedDate +
-                        " " +
-                        formattedTime
+                    " " +
+                    formattedDate +
+                    " " +
+                    formattedTime
                 );
                 postInfo.append(link, timeAgo);
                 postHeader.append(profileLink, postInfo);
@@ -147,4 +174,6 @@ $(() => {
             }
         }
     });
+});
+
 });

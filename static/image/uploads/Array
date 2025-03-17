@@ -1,0 +1,64 @@
+$(document).ready(function () {
+    $(".comment-reaction").on("click", function () {
+        let postContainer = $(this).closest(".post-container");
+        let commentSection = postContainer.find(".comment-section");
+
+        if (commentSection.length === 0) {
+            // Create the comment section if it doesn't exist
+            commentSection = $(`
+                <div class="comment-section">
+                    <div class="comments-list"></div> <!-- This will hold existing comments -->
+                    <input type="text" class="comment-input" placeholder="Write a comment...">
+                </div>
+            `);
+            postContainer.append(commentSection);
+        }
+
+        // Check if there are existing comments
+        let existingComments = commentSection.find(".comments-list").children().length;
+
+        if (existingComments > 0) {
+            // Show comments + input
+            commentSection.find(".comments-list").show();
+        } else {
+            // Only show input if no comments exist
+            commentSection.find(".comments-list").hide();
+        }
+
+        // Toggle comment section
+        commentSection.toggle();
+    });
+});
+
+<div class="post-container">
+    <div class="post-header">
+        <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
+        <div class="post-info">
+            <h6>User name</h6>
+            <small>5 mins ago</small>
+        </div>
+    </div>
+    <div class="post-text">Hello Putao! I am here.</div>
+
+    <img src="static/image/treeking.jpg" alt="Post Image" class="post-image">
+    
+    <div class="reaction-section">
+        <i class="fa fa-thumbs-up like-reaction me-3" aria-hidden="true"></i>
+        <i class="fa fa-comment comment-reaction" aria-hidden="true"></i>
+    </div>
+</div>
+.comment-section {
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+.comments-list {
+    margin-bottom: 10px;
+}
+.comment-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

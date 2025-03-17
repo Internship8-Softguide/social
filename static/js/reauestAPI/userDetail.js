@@ -80,9 +80,11 @@ $(() => {
         const inputValue = $(this).val();
         const type = parentElement.attr("type");
         let request = {
-            id: userCookie.data.id,
-            data: inputValue,
-            type: type,
+
+            id  : userCookie.data.id,
+            data: inputValue, 
+            type: type
+
         };
         if (inputValue != '') {
             let val = (parentElement.attr("type") == 'password') ? "********" : inputValue.trim();
