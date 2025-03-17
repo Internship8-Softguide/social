@@ -41,8 +41,8 @@ $(() => {
         let parentP = $(this).parent();
         let input = $(
             '<input type="text" class="edit-input" value="' +
-                parentP.text().trim() +
-                '">'
+            parentP.text().trim() +
+            '">'
         );
         parentP.html(input);
         input.focus();
@@ -55,18 +55,19 @@ $(() => {
         for (let i = 0; i < input.length; i++) {
             const element = input[i];
             const parent = $(element).parent();
+            let val = (parent.attr("type") == 'password') ? "********" : element.value.trim();
             parent
                 .empty()
                 .append(
-                    element.value.trim() + "<i class='fa-solid fa-pen'></i>"
+                    val + "<i class='fa-solid fa-pen'></i>"
                 );
             parent.find(".fa-pen").on("click", function () {
                 resetInput();
                 let parentP = $(this).parent();
                 let input = $(
                     '<input type="text" class="edit-input" value="' +
-                        parentP.text().trim() +
-                        '">'
+                    parentP.text().trim() +
+                    '">'
                 );
                 parentP.html(input);
             });
@@ -75,7 +76,6 @@ $(() => {
 
     $(".info").on("change", "p input", function () {
         const parentElement = $(this).parent();
-        console.log(parentElement);
         const inputValue = $(this).val();
         const type = parentElement.attr("type");
         let request = {
@@ -83,20 +83,20 @@ $(() => {
             data: inputValue,
             type: type,
         };
-
+        let val = (parentElement.attr("type") == 'password') ? "********" : inputValue.trim();
         postJson("./server/user/editUser.php", request).then((jsonResult) => {
             if (jsonResult.status == 200) {
                 parentElement
                     .empty()
-                    .append(inputValue + "<i class='fa-solid fa-pen'></i>");
+                    .append(val + "<i class='fa-solid fa-pen'></i>");
                 setCookie(JSON.stringify(jsonResult.data));
                 parentElement.find(".fa-pen").on("click", function () {
                     resetInput();
                     let parentP = $(this).parent();
                     let input = $(
                         '<input type="text" class="edit-input" value="' +
-                            parentP.text().trim() +
-                            '">'
+                        parentP.text().trim() +
+                        '">'
                     );
                     parentP.html(input);
                 });

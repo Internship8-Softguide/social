@@ -1,5 +1,5 @@
-<?php require_once("./layout/auth.php") ?>
-<?php require_once("./layout/header.php") ?>
+<?php require_once ("./layout/auth.php") ?>
+<?php require_once ("./layout/header.php") ?>
 
 <div class="home-background">
 
@@ -23,7 +23,7 @@
                         <li><a class="dropdown-item" id="logout">Logout</a></li>
                     </ul>
                 </div>
-                <span class="me-5">User Name</span>
+                <span class="me-5"><?= $user['data']['name'] ?></span>
             </div>
         </div>
     </nav>
@@ -78,7 +78,7 @@
         </div>
     </div>
 </div>
-<?php require_once("./layout/footer.php") ?>
+<?php require_once ("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/home.js"></script>
 
 <script>
