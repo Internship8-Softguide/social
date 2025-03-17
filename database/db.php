@@ -63,8 +63,8 @@ function createTables($mysqli)
             `content` TEXT NOT NULL,
             `user_id` INT NOT NULL,
             `postImage` VARCHAR(225) NOT NULL,
-            `createdAt` TIMESTAMP DEFAULT NOW(),
-            `updatedAt` TIMESTAMP DEFAULT NOW(),
+            `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            `updatedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id)
 
         )";
@@ -104,8 +104,6 @@ function createTables($mysqli)
         die();
     }
 }
-
-
 $mysqli = getConnection();
 createDatabase($mysqli);
 createTables($mysqli);

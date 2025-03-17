@@ -1,22 +1,12 @@
-<?php require_once ("./layout/auth.php") ?>
-<?php require_once ("./layout/header.php") ?>
+<?php require_once("./layout/auth.php") ?>
+<?php require_once("./layout/header.php") ?>
 
-<?php
-if (isset($_COOKIE['user'])) {
-    $userData = json_decode($_COOKIE['user'], true);    
-    if ($userData !== null) {
-        $username = $userData['data']['name'];
-    } else {
-        echo "Failed to decode user data.";
-    }
-}
-?>
 <div class="home-background">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
 
-            <a class="navbar-brand ms-3" href="#">SG-Social</a>
+            <a class="navbar-brand ms-3" href="./home.php">SG-Social</a>
 
             <!-- <div class="search-bar mx-auto">
             <input type="text" class="form-control" placeholder="Search">
@@ -29,13 +19,11 @@ if (isset($_COOKIE['user'])) {
                 <div class="dropdown">
                     <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-
-                        <li><a class="dropdown-item" href="user_detail.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="./user_detail.php">Profile</a></li>
                         <li><a class="dropdown-item" id="logout">Logout</a></li>
                     </ul>
                 </div>
-                <span class="me-5"><?php echo htmlspecialchars($username); ?></span>
-
+                <span class="me-5">User Name</span>
             </div>
         </div>
     </nav>
@@ -45,26 +33,7 @@ if (isset($_COOKIE['user'])) {
             <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
             <button class="new-post-button">Add a post</button>
         </div>
-        <div class="post-container">
-            <div class="post-header">
-                <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
-                <div class="post-info">
-                    <h6>User name</h6>
-                    <small>5 mins ago</small>
-                </div>
-            </div>
-            <div class="post-text">
-                Hello Putao! I am here.
-            </div>
-
-            <img src="static/image/treeking.jpg" alt="Post Image" class="post-image">
-            <div class="reaction-section">
-                <i class="fa fa-thumbs-up like-reaction me-3" aria-hidden="true"></i>
-                <i class="fa fa-comment comment-reaction" aria-hidden="true"></i>
-                <!-- <input type="text" name="comment" class="comment-input" placeholder="Comment here..."></input> -->
-            </div>
-        </div>
-        <div class="post-container">
+        <!-- <div class="post-container">
             <div class="post-header">
                 <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
                 <div class="post-info">
@@ -80,10 +49,9 @@ if (isset($_COOKIE['user'])) {
 
             <div class="reaction-section">
                 <i class="fa fa-thumbs-up like-reaction me-3" aria-hidden="true"></i>
-                <i class="fa fa-comment comment-reaction" aria-hidden="true"></i>
-                <!-- <input type="text" name="comment" class="comment-input" placeholder="Comment here..."></input> -->
-            </div>
-        </div>
+                <i class="fa fa-comment comment-reaction" aria-hidden="true"></i> -->
+        <!-- </div>
+</div> -->
     </div>
     <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -109,41 +77,55 @@ if (isset($_COOKIE['user'])) {
             </div>
         </div>
     </div>
-
 </div>
-
-<?php require_once ("./layout/footer.php") ?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/home.js"></script>
 
 <script>
     $(document).ready(function() {
-        $(".comment-reaction").on("click", function() {
+        // getAllData("./server/home/comment.php")
+        //     .then((jsonResult) => {
+        //         // Handle the response here
+        //         console.log("Data from server:", jsonResult);
+        //         // You can do further processing here, like updating the UI
+
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error fetching data:", error);
+        //     });
+        let comment_input = $(".comment-section");
+        $(document).on("change", comment_input, function() {
+            console.log("Hello");
+        });
+        $(document).on("click", "#control", function() {
+            const postId = $(this).closest(".post-container").data("post_id");
+            const userId = $(this).closest(".post-container").data("user_id");
+
+            console.log("Clicked post_id:", postId);
+            console.log("Clicked user_id:", userId);
             let postContainer = $(this).closest(".post-container");
             let commentSection = postContainer.find(".comment-section");
+            console.log(commentSection)
 
             if (commentSection.length === 0) {
+                // If the comment section does not exist, create and append it
                 commentSection = $(`
-                <div class="comment-section">
-                    <div class="comments-list">
-                    <p>This is comment One </p> 
-                    <p>This is comment Two </p> 
-                    </div>
-                    <input type="text" class="comment-input" placeholder="Write a comment...">
-                </div>
-            `);
+            <div class="comment-section">
+            <form>
+                <div class="comments-list">
+                    <p>This is comment One</p> 
+                    <p>This is comment Two</p> 
+                </div>  
+                <input type="text" class="comment-input" placeholder="Write a comment...">
+                </form>
+            </div>
+        `);
                 postContainer.append(commentSection);
-            }
-
-            let existingComments = commentSection.find(".comments-list").children().length;
-
-            if (existingComments > 0) {
-
-                commentSection.find(".comments-list").show();
             } else {
-                commentSection.find(".comments-list").hide();
+                // If the comment section exists, toggle its visibility
+                commentSection.toggle();
             }
-
-            commentSection.toggle();
         });
+
     });
 </script>

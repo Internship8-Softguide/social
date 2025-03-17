@@ -63,6 +63,49 @@ function changeName($mysqli, $id, $name)
         return ['message' => $th->getMessage(), 'result' => false];
     }
 }
+function changeEmail($mysqli, $id, $email)
+{
+    try {
+        $sql = "UPDATE `users` SET `email`='$email' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user Register", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+function changePhone($mysqli, $id, $phone)
+{
+    try {
+        $sql = "UPDATE `users` SET `phone`='$phone' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user phone edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+
+function changePassword($mysqli, $id, $password)
+{
+    try {
+        $hashedPassword = password_hash($password, PASSWORD_ARGON2ID);
+        $sql = "UPDATE `users` SET `password`='$hashedPassword' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success User's password edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
+
+function changeRelationship($mysqli, $id, $relationship)
+{
+    try {
+        $sql = "UPDATE `users` SET `relationship`='$relationship' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user relationship", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
 
 function get_user_email_by_email($mysqli, $email): array
 {
