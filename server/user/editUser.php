@@ -17,7 +17,7 @@ if ($requestMethod === 'POST') {
             $result = changeName($mysqli, $id, $data);
             break;
         case 'email':
-            $result = changeName($mysqli, $id, $data);
+            $result = changeEmail($mysqli, $id, $data);
             break;
         case 'password':
             $result = changePassword($mysqli, $id, $data);
