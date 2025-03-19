@@ -1,5 +1,5 @@
 <?php
-require_once("./database/index.php")
+require_once ("./database/index.php")
 ?>
 
 

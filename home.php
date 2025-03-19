@@ -27,12 +27,16 @@
             </div>
         </div>
     </nav>
-    <div class="main-content">
+    <div class="main-content1">
         <!-- <h3>Your New Posts</h3> -->
         <div class="new-post-container" data-bs-toggle="modal" data-bs-target="#postModal">
             <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">
             <button class="new-post-button">Add a post</button>
         </div>
+    </div>
+    <div class="main-content" id="main-content">
+        <!-- <h3>Your New Posts</h3> -->
+
         <!-- <div class="post-container">
             <div class="post-header">
                 <img src="static/image/profile.png" alt="Profile Picture" class="profile-pic">

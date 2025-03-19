@@ -10,6 +10,28 @@ function create_reaction($mysqli, $postId, $userId, $typeId)
     }
 }
 
+function like($mysqli, $postId, $userId)
+{
+    try {
+        $sql = "INSERT INTO `reaction`(`postId`, `userId`, `typeId`) VALUES ($postId, $userId, 1)";
+        $mysqli->query($sql);
+        return ['message' => "Liked", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false, 'errCode' => $th->getCode()];
+    }
+}
+
+function unlike($mysqli, $postId, $userId)
+{
+    try {
+        $sql = "DELETE FROM  `reaction` WHERE `postId`=$postId AND `userId`=$userId";
+        $mysqli->query($sql);
+        return ['message' => "Unliked", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false, 'errCode' => $th->getCode()];
+    }
+}
+
 
 
 function get_reactions($mysqli)
@@ -23,11 +45,12 @@ function get_reactions($mysqli)
     }
 }
 
-function update_reaction ($mysqli,$postId,$userId,$newTypeId){
-    try{
+function update_reaction($mysqli, $postId, $userId, $newTypeId)
+{
+    try {
         $sql  = "UPDATE `reaction` SET `typeId` = $newTypeId WHERE `postId` = $postId AND `userId` = $userId";
         $mysqli->query($sql);
-    } catch (Exception $th){
+    } catch (Exception $th) {
         echo "Cannot update reaction";
     }
 }

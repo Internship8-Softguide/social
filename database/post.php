@@ -14,7 +14,7 @@ function get_posts($mysqli)
 {
     try {
         $sql = "SELECT * FROM posts";
-        return   $mysqli->query($sql);
+        return $mysqli->query($sql);
     } catch (Exception $e) {
         echo "Can not view posts";
     }
@@ -22,7 +22,7 @@ function get_posts($mysqli)
 function get_posts_and_users($mysqli)
 {
     try {
-        $sql = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id";
+        $sql = "SELECT posts.*,users.name,users.photo,(SELECT COUNT(*) FROM `reaction` WHERE `postId`=posts.id) as reaction FROM posts INNER JOIN users ON posts.user_id = users.id  ORDER BY posts.`id` DESC";
         $result =  $mysqli->query($sql);
         if ($result === false) {
             throw new Exception("Query failed");
@@ -36,10 +36,24 @@ function get_posts_and_users($mysqli)
         echo "Can not view posts";
     }
 }
+
+function getLatestPost($mysqli)
+{
+    try {
+        $sql = "SELECT posts.*,users.name,users.photo,(SELECT COUNT(*) FROM `reaction` WHERE `postId`=posts.id) as reaction FROM posts INNER JOIN users ON posts.user_id = users.id ORDER BY posts.`id` DESC LIMIT 1";
+        $result =  $mysqli->query($sql);
+        if ($result === false) {
+            throw new Exception("Query failed");
+        }
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        echo "Can not view posts";
+    }
+}
 function get_post($mysqli, $id)
 {
     try {
-        $sql = "SELECT * FROM posts WHERE `id`=$id";
+        $sql = "SELECT * FROM posts WHERE `id`=$id ORDER BY `id` DESC";
         $mysqli->query($sql);
     } catch (Exception $e) {
         echo "Can not view post";

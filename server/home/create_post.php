@@ -49,7 +49,8 @@ if ($requestMethod == 'POST') {
                     "file_name"  => $fileName,
                     "file_path"  => $targetFilePath,
                     "user_id"    => $user_id,
-                    "text_field" => $textField
+                    "text_field" => $textField,
+                    "data" => getLatestPost($mysqli)
                 ]);
             } else {
                 echo json_encode(["error" => "Error moving the uploaded file."]);
@@ -59,7 +60,7 @@ if ($requestMethod == 'POST') {
             echo json_encode(["error" => $photoErr]);
             exit;
         }
-    }elseif ($textField != '') {
+    } elseif ($textField != '') {
         // echo $textField;
         // die();
         create_post($mysqli, $textField, $user_id, '');
@@ -69,12 +70,13 @@ if ($requestMethod == 'POST') {
             "file_name"  => '',
             "file_path"  => '',
             "user_id"    => $user_id,
-            "text_field" => $textField
+            "text_field" => $textField,
+            "data" => getLatestPost($mysqli)
         ]);
-    }else{
+    } else {
         echo json_encode(["error" => "Either a file or text field is required"]);
 
     }
-}else {
+} else {
     echo json_encode(["error" => "Invalid request method."]);
 }

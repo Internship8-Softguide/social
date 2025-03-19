@@ -229,9 +229,10 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.main-content {
+.main-content1 {
   flex: 1;
   padding: 20px;
+  margin-bottom: -30px;
 }
 .user-detail {
   height: 100vh;
