@@ -118,6 +118,17 @@ function changeRelationship($mysqli, $id, $relationship)
         return ['message' => $th->getMessage(), 'result' => false];
     }
 }
+function changeBio($mysqli, $id, $bio)
+{
+    try {
+        $sql = "UPDATE `users` SET `bio`='$bio' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success user bio", 'result' => true];
+
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
 
 function get_user_email_by_email($mysqli, $email): array
 {

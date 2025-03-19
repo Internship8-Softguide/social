@@ -10,6 +10,26 @@ function create_reaction_type($mysqli, $reactionName)
         echo "Can not create reaction Type";
     }
 }
+
+function insertReactionTypes($mysqli)
+{
+    $sql = "SELECT * FROM `reaction_types`";
+    $result = $mysqli->query($sql);
+    if (count($result->fetch_all()) === 0) {
+        $sql = "INSERT INTO `reaction_types` (`id`,`reactionName`) VALUES
+            (1,'Like'),
+            (2,'Love'),
+            (3,'Haha'),
+            (4,'Wow') ";
+
+        if ($mysqli->query($sql)) {
+            return true;
+        }
+        return false;
+    }
+    return true;
+}
+
 function update_reaction_type($mysqli, $reactionName, $id)
 {
     try {

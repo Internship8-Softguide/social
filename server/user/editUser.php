@@ -34,6 +34,9 @@ if ($requestMethod === 'POST') {
         case 'location':
             $result = changeLocation($mysqli, $id, $data);
             break;
+        case 'about':
+            $result = changeBio($mysqli, $id, $data);
+            break;  
         default:
             # code...
             break;

@@ -1,7 +1,7 @@
 <?php require_once ("./layout/auth.php") ?>
 <?php require_once ("./layout/header.php") ?>
 <?php
-$userId = $username = $email = $edu = $rs = $phone = $location = "";
+$userId = $username = $email = $edu = $rs = $phone = $location = $bio = "";
 $isMe = false;
 if (isset($_GET['id'])) {
     $user = get_user_by_id($mysqli, $_GET['id']);
@@ -20,6 +20,8 @@ if (isset($_COOKIE['user'])) {
         $rs    = $userData['data']['relationship'];
         $phone    = $userData['data']['phone'];
         $location    = $userData['data']['location'];
+        $bio = $userData['data']['bio'];
+        
     } else {
         echo "Failed to decode user data.";
     }
@@ -53,8 +55,8 @@ if (isset($_COOKIE['user'])) {
                 <div style="display: flex;justify-content: space-between;align-items: center;">
                     <h2>About </h2><i class="fa-solid fa-edit"></i> <i class="fa-solid fa-check" style="display: none;"></i>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.</p>
+                <p>Add your bio
+            </p>
             </div>
 
             <div class="detail">

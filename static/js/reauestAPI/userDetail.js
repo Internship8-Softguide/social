@@ -4,34 +4,39 @@ $(() => {
     let edit = $(".fa-edit");
     edit.on("click", function (event) {
         let pElement = $(this).closest(".about").find("p");
-        let textArea = $(
-            '<textarea width="100px" height="30px" class="edit-textarea"></textarea>'
-        )
-            .val(pElement.text().trim())
+        let currentText = pElement.text().trim(); 
+        let textAreaValue = (currentText === "Add your bio") ? "" : currentText;
+        let textArea = $('<textarea width="100px" height="30px" class="edit-textarea"></textarea>')
+            .val(textAreaValue) 
             .attr("rows", 4)
             .attr("cols", 50);
         pElement.html(textArea);
-        this.style.display = "none";
+    
+        $(this).css("display", "none");
+    
         let check = $(this).closest(".about").find(".fa-check");
         check.on("click", function () {
-            let request = {
-                id: userCookie.data.id,
-                data: textArea.val(),
-                type: "about",
-            };
-            postJson("./server/user/editUser.php", request).then(
-                (jsonResult) => {
+            let newText = textArea.val().trim();
+            if (newText === "") {
+                pElement.empty().append("Add your bio"); 
+            } else {
+                let request = {
+                    id: userCookie.data.id,
+                    data: newText,
+                    type: "about",
+                };
+                postJson("./server/user/editUser.php", request).then((jsonResult) => {
                     if (jsonResult.status == 200) {
-                        check.css("display", "none");
-                        edit.css("display", "block");
                         setCookie(JSON.stringify(jsonResult.data));
-                        pElement.empty().append(textArea.val());
+                        pElement.empty().append(newText);
                     } else {
                         commonValidatMessage(jsonResult.data);
                     }
                     loadingHide();
-                }
-            );
+                });
+            }
+            check.css("display", "none");
+            edit.css("display", "block"); 
         });
         check.css("display", "block");
     });
