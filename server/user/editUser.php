@@ -23,7 +23,7 @@ if ($requestMethod === 'POST') {
             $result = changePassword($mysqli, $id, $data);
             break;
         case 'edu':
-            $result = changeName($mysqli, $id, $data);
+            $result = changeEducation($mysqli, $id, $data);
             break;
         case 'phone':
             $result = changePhone($mysqli, $id, $data);
@@ -34,6 +34,9 @@ if ($requestMethod === 'POST') {
         case 'location':
             $result = changeLocation($mysqli, $id, $data);
             break;
+        case 'about':
+            $result = changeBio($mysqli, $id, $data);
+            break;  
         default:
             # code...
             break;

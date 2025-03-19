@@ -17,7 +17,7 @@
                 <!-- <i class="fas fa-bell fs-5 cursor-pointer me-5" role="button"></i>
         <i class="fas fa-comments fs-5 cursor-pointer me-5" role="button"></i> -->
                 <div class="dropdown">
-                    <img src="static/image/profile.png" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown">
+                    <img src="<?php echo $user['data']['photo'] == '' ? "static/image/profile.png" : $user['data']['photo'] ?>" class="dropdown-toggle me-2" id="userDropdown" data-bs-toggle="dropdown">
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="./user_detail.php">Profile</a></li>
                         <li><a class="dropdown-item" id="logout">Logout</a></li>

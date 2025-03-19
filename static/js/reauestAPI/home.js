@@ -47,7 +47,7 @@ $(() => {
                 user_id = jsonResult.data[i].user_id;
                 user_name = jsonResult.data[i].name;
                 post_image = jsonResult.data[i].postImage;
-                user_photo = jsonResult.data[i].photo;
+                user_photo = jsonResult.data[i].photo == '' ? 'static/image/profile.png' : jsonResult.data[i].photo;
                 title = jsonResult.data[i].title;
 
                 const dbTimeStr = jsonResult.data[i].createdAt;
@@ -123,7 +123,7 @@ $(() => {
                 postHeader = $("<div>").addClass("post-header");
                 profilePic = $("<img>")
                     .attr({
-                        src: "static/image/" + user_photo,
+                        src: user_photo,
                         alt: "Profile Picture",
                     })
                     .addClass("profile-pic");
