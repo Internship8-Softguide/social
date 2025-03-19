@@ -1,5 +1,5 @@
-<?php require_once("./layout/auth.php") ?>
-<?php require_once("./layout/header.php") ?>
+<?php require_once ("./layout/auth.php") ?>
+<?php require_once ("./layout/header.php") ?>
 <?php
 $userId = $username = $email = $edu = $rs = $phone = $location = $bio = "";
 $isMe = false;
@@ -21,7 +21,7 @@ if (isset($_COOKIE['user'])) {
         $phone    = $userData['data']['phone'];
         $location    = $userData['data']['location'];
         $bio = $userData['data']['bio'];
-        
+
     } else {
         echo "Failed to decode user data.";
     }
@@ -53,7 +53,11 @@ if (isset($_COOKIE['user'])) {
         <div class="aboutdetail">
             <div class="about">
                 <div style="display: flex;justify-content: space-between;align-items: center;">
-                    <h2>About </h2><i class="fa-solid fa-edit"></i> <i class="fa-solid fa-check" style="display: none;"></i>
+                    <h2>About </h2>
+                    <?php if ($isMe) {
+                        echo '<i class="fa-solid fa-edit"></i>';
+                    } ?>
+                    <i class="fa-solid fa-check" style="display: none;"></i>
                 </div>
                 <p>Add your bio
             </p>
@@ -116,5 +120,5 @@ if (isset($_COOKIE['user'])) {
         </div>
     </div>
 </div>
-<?php require_once("./layout/footer.php") ?>
+<?php require_once ("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/userDetail.js"></script>

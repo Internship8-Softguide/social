@@ -36,6 +36,7 @@ function createTables($mysqli)
             `education` VARCHAR(225) DEFAULT '',
             `location` VARCHAR(225) DEFAULT '',
             `date_of_birth` DATE NOT NULL,
+            `bio` VARCHAR(225) DEFAULT '',
             `photo` VARCHAR(225) NOT NULL,
             `gender` VARCHAR(225) NOT NULL,
             `relationship` VARCHAR(225) NOT NULL,
