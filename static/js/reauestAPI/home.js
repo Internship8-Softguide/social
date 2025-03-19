@@ -34,10 +34,11 @@ $(() => {
                         post_image = jsonResult.data.postImage;
                         user_photo = jsonResult.data.photo == '' ? 'static/image/profile.png' : jsonResult.data.photo;
                         title = jsonResult.data.title;
-                        reaction = jsonResult.data[i].reaction;
+                        reaction = jsonResult.data.reaction;
                         const dbTimeStr = jsonResult.data.createdAt;
                         let maincontent = $("#main-content");
-                        let postContainer = createPostCard(post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction);
+                        let comment = jsonResult.data.comment;
+                        let postContainer = createPostCard(post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction,comment);
                         maincontent.prepend(postContainer);
                     } else {
                         commonValidatMessage(jsonResult);
@@ -56,16 +57,17 @@ $(() => {
     getAllData("./server/home/selectPost.php").then((jsonResult) => {
         if (jsonResult.status == "success") {
             for (let i = 0; i < jsonResult.data.length; i++) {
-                post_id = jsonResult.data[i].id;
-                user_id = jsonResult.data[i].user_id;
-                user_name = jsonResult.data[i].name;
-                post_image = jsonResult.data[i].postImage;
-                user_photo = jsonResult.data[i].photo == '' ? 'static/image/profile.png' : jsonResult.data[i].photo;
-                title = jsonResult.data[i].title;
-                reaction = jsonResult.data[i].reaction;
+                let post_id = jsonResult.data[i].id;
+                let user_id = jsonResult.data[i].user_id;
+                let user_name = jsonResult.data[i].name;
+                let post_image = jsonResult.data[i].postImage;
+                let user_photo = jsonResult.data[i].photo == '' ? 'static/image/profile.png' : jsonResult.data[i].photo;
+                let title = jsonResult.data[i].title;
+                let reaction = jsonResult.data[i].reaction;
                 const dbTimeStr = jsonResult.data[i].createdAt;
-                maincontent = $("#main-content");
-                let postContainer = createPostCard(post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction);
+                let comment = jsonResult.data[i].comment;
+                let maincontent = $("#main-content");
+                let postContainer = createPostCard(post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction,comment);
                 maincontent.append(postContainer);
             }
         }
@@ -86,7 +88,7 @@ $(() => {
             return "Just now"; // Less than 1 second difference
         }
     }
-    const createPostCard = (post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction) => {
+    const createPostCard = (post_id, user_id, user_photo, user_name, post_image, title, dbTimeStr, reaction,comment) => {
         const now = new Date();
         const dbTime = new Date(dbTimeStr);
         const year = dbTime.getFullYear();
@@ -135,26 +137,20 @@ $(() => {
         const hours = Math.floor(minutes / 60);
         const days = Math.floor(hours / 24);
         const years = Math.floor(days / 365);
-        postContainer = $("<div>")
-            .addClass("post-container")
-            .data("post_id", post_id)
-            .data("user_id", user_id);
-        postHeader = $("<div>").addClass("post-header");
-        profilePic = $("<img>")
-            .attr({
-                src: user_photo,
-                alt: "Profile Picture",
-            })
-            .addClass("profile-pic");
-        profileLink = $("<a>")
-            .attr("href", "./user_detail.php?id=" + user_id)
-            .append(profilePic);
-        postInfo = $("<div>").addClass("post-info");
-        userName = $("<h6>").text(user_name);
-        link = $("<a>")
-            .attr("href", "./user_detail.php?id=" + user_id)
-            .append(userName)
-            .css({ "text-decoration": "none", color: "black" });
+
+        let postContainer = $("<div>").addClass("post-container").attr('id', "postContainerId" + post_id);;
+        let postHeader = $("<div>").addClass("post-header");
+        let profilePic = $("<img>").attr({src: user_photo,alt: "Profile Picture"}).addClass("profile-pic");
+        let profileLink = $("<a>").attr("href", "./user_detail.php?id=" + user_id);
+        
+        profileLink.append(profilePic);
+
+        let postInfo = $("<div>").addClass("post-info");
+        let userName = $("<h6>").text(user_name);
+        let link = $("<a>").attr("href", "./user_detail.php?id=" + user_id);
+        link.css({ "text-decoration": "none", color: "black" });
+
+        link.append(userName);
         timeAgo = $("<small>").text(
             getTimeDifference(years, days, hours, minutes, seconds) +
             " " +
@@ -162,9 +158,11 @@ $(() => {
             " " +
             formattedTime
         );
+
         postInfo.append(link, timeAgo);
         postHeader.append(profileLink, postInfo);
-        postText = $("<div>").addClass("post-text").text(title);
+
+        let postText = $("<div>").addClass("post-text").text(title);
         if (post_image !== "" || post_image !== null) {
             postImage = $("<img>")
                 .attr({
@@ -173,25 +171,49 @@ $(() => {
                 })
                 .addClass("post-image");
         }
-        reactionSection = $("<div>").addClass("reaction-section");
+        let reactionSection = $("<div>").addClass("reaction-section");
         if (reaction > 0) {
-            likeReaction = $("<i>")
+            let likeReaction = $("<i>")
                 .addClass(" fa fa-thumbs-up like-reaction me-3")
                 .attr("aria-hidden", "true")
                 .attr('id', "postId" + post_id);
+                likeReaction.on("click", () => likeAction(user_id, post_id));
+                reactionSection.append(likeReaction)
         } else {
-
-            likeReaction = $("<i>")
+            let likeReaction = $("<i>")
                 .addClass(" far fa-thumbs-up like-reaction me-3")
                 .attr("aria-hidden", "true")
                 .attr('id', "postId" + post_id);
+                likeReaction.on("click", () => likeAction(user_id, post_id));
+                reactionSection.append(likeReaction)
         }
-        likeReaction.on("click", () => likeAction(user_id, post_id));
-        commentReaction = $("<i>")
+        let commentReaction = $("<i>")
             .addClass("far fa-comment comment-reaction")
-            .attr("id", "control")
+            .attr("id", "commentId"+post_id)
             .attr("aria-hidden", "true");
-        reactionSection.append(likeReaction, commentReaction);
+        commentReaction.on("click", () => commentAction( post_id));
+        reactionSection.append( commentReaction);
+
+        let commentSection = $("<div>").addClass("comment-section");
+        let commentForm = $("<form>");
+        let commentList = $("<div>").addClass("comments-list").attr("id","commentListContainer"+post_id);
+        let commentInput = $("<input>").addClass("comment-input").attr({"placeholder":"Write a comment...","name":"commentText","id":"commentText"+post_id});
+        commentForm.append(commentList,commentInput);
+        commentSection.append(commentForm);
+        comment.forEach(commentTxt => {
+            let commentText = $("<p>").text(commentTxt);
+            commentList.append(commentText);
+        });
+
+        commentForm.on("submit",(e)=>{
+            e.preventDefault()
+            const request ={ post_id: post_id, user_id: user_id };
+            commentForm.find('input').each((index, input) => {
+                request[input.name] = $(input).val();
+            });
+            giveComment(request);
+        });
+
         if (post_image == "" || post_image == null) {
             postContainer.append(postHeader, postText, reactionSection);
         } else {
@@ -202,6 +224,9 @@ $(() => {
                 reactionSection
             );
         }
+
+        postContainer.append(commentSection);
+        commentSection.hide();
         return postContainer;
     }
 
@@ -216,12 +241,26 @@ $(() => {
             })
         } else {
             postJson('./server/home/unlike.php', { postId: post_id, userId: user_id }).then((result) => {
-                console.log(result)
                 if (result.status == 200) {
                     targetLike.attr("class", 'far fa-thumbs-up like-reaction me-3')
                 }
             })
         }
+    }
+    const giveComment = (request)=>{
+        postJson('./server/home/comment.php', request).then((result) => {
+            if (result.status == 200) {
+                let commentContainer = $("#commentListContainer"+request.post_id);
+                let commentText = $("<p>").text(request.commentText);
+                commentContainer.append(commentText)
+                $("#commentText"+request.post_id).val("")
+            }
+        })
+    }
+    const commentAction = (post_id)=>{
+        let postContainer =  $("#postContainerId" + post_id);
+        let commentSection = postContainer.find(".comment-section");
+        commentSection.toggle();              
     }
 });
 

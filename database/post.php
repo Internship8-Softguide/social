@@ -27,11 +27,8 @@ function get_posts_and_users($mysqli)
         if ($result === false) {
             throw new Exception("Query failed");
         }
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
-        return $data;
+        
+        return $result;
     } catch (Exception $e) {
         echo "Can not view posts";
     }
