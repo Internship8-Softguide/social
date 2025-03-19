@@ -73,6 +73,16 @@ function changeEmail($mysqli, $id, $email)
         return ['message' => $th->getMessage(), 'result' => false];
     }
 }
+function changeEducation($mysqli, $id, $edu)
+{
+    try {
+        $sql = "UPDATE `users` SET `education`='$edu' where `id`=$id";
+        $mysqli->query($sql);
+        return ['message' => "Success Education edit", 'result' => true];
+    } catch (Exception $th) {
+        return ['message' => $th->getMessage(), 'result' => false];
+    }
+}
 function changePhone($mysqli, $id, $phone)
 {
     try {
@@ -91,7 +101,7 @@ function changeLocation($mysqli, $id, $location)
         $sql = "UPDATE `users` SET `location`='$location' where `id`=$id";
         $mysqli->query($sql);
         return ['message' => "Success user location edit", 'result' => true];
-} catch (Exception $th) {
+    } catch (Exception $th) {
         return ['message' => $th->getMessage(), 'result' => false];
     }
 }
@@ -113,7 +123,6 @@ function changeRelationship($mysqli, $id, $relationship)
         $sql = "UPDATE `users` SET `relationship`='$relationship' where `id`=$id";
         $mysqli->query($sql);
         return ['message' => "Success user relationship", 'result' => true];
-
     } catch (Exception $th) {
         return ['message' => $th->getMessage(), 'result' => false];
     }

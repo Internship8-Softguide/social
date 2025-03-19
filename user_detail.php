@@ -1,5 +1,5 @@
-<?php require_once ("./layout/auth.php") ?>
-<?php require_once ("./layout/header.php") ?>
+<?php require_once("./layout/auth.php") ?>
+<?php require_once("./layout/header.php") ?>
 <?php
 $userId = $username = $email = $edu = $rs = $phone = $location = $bio = "";
 $isMe = false;
@@ -16,7 +16,7 @@ if (isset($_COOKIE['user'])) {
         $userId   = $userData['data']['id'];
         $username = $userData['data']['name'];
         $email    = $userData['data']['email'];
-        // $edu    = $userData['data']['education'];
+        $edu    = $userData['data']['education'];
         $rs    = $userData['data']['relationship'];
         $phone    = $userData['data']['phone'];
         $location    = $userData['data']['location'];
@@ -116,5 +116,5 @@ if (isset($_COOKIE['user'])) {
         </div>
     </div>
 </div>
-<?php require_once ("./layout/footer.php") ?>
+<?php require_once("./layout/footer.php") ?>
 <script src="./static/js/reauestAPI/userDetail.js"></script>
