@@ -161,6 +161,7 @@ const file = (element) => {
 
         return false;
     }
+    return true;
 };
 
 

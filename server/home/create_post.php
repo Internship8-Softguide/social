@@ -12,7 +12,15 @@ if (isset($_COOKIE['user'])) {
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 if ($requestMethod == 'POST') {
     $uploadDir = "../../static/image/uploads/";
-    $textField = isset($_POST['textField']) ? $mysqli->real_escape_string($_POST['textField']) : "";
+    // $textField = isset($_POST['textField']) ? $mysqli->real_escape_string($_POST['textField']) : "";
+    // $textField = !empty($_POST['textField']) ? $mysqli->real_escape_string($_POST['textField']) : "";
+    // $textField = (isset($_POST['textField']) && $_POST['textField'] !== '') ? $mysqli->real_escape_string($_POST['textField']) : "";
+
+    if (isset($_POST['textField']) && trim($_POST['textField']) !== '') {
+        $textField = $mysqli->real_escape_string($_POST['textField']);
+    } else {
+        $textField = "";
+    }
 
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -32,12 +40,11 @@ if ($requestMethod == 'POST') {
         if (!in_array($extension, $allow_extension)) {
             $photoErr = "Your file is not allowed. Only JPG, JPEG, and PNG are allowed.";
         }
-
         if ($photoErr === '') {
             if (move_uploaded_file($fileTmpPath, $targetFilePath)) {
                 create_post($mysqli, $textField, $user_id, $targetFilePath);
                 echo json_encode([
-                    "status"    => 200,
+                    "status"     => 200,
                     "message"    => "File uploaded successfully.",
                     "file_name"  => $fileName,
                     "file_path"  => $targetFilePath,
@@ -52,17 +59,22 @@ if ($requestMethod == 'POST') {
             echo json_encode(["error" => $photoErr]);
             exit;
         }
-    } elseif ($textField != '') {
+    }elseif ($textField != '') {
+        // echo $textField;
+        // die();
         create_post($mysqli, $textField, $user_id, '');
         echo json_encode([
-            "status"    => 200,
-            "message"    => "Post created successfully.",
+            "status"     => 200,
+            "message"    => "File uploaded successfully.",
             "file_name"  => '',
             "file_path"  => '',
             "user_id"    => $user_id,
             "text_field" => $textField
         ]);
+    }else{
+        echo json_encode(["error" => "Either a file or text field is required"]);
+
     }
-} else {
+}else {
     echo json_encode(["error" => "Invalid request method."]);
 }
