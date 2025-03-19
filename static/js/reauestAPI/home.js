@@ -13,16 +13,19 @@ $(() => {
         postCreateErr.text("");
         fileErr.text("");
         textFieldErr.text("");
-
-        if (validate([file])) {
-            let formData = new FormData();
+        let formData = new FormData();
+        if (file[0].files.length > 0 && validate([file])) {
             formData.append("file", file[0].files[0]);
+        }
+        if(validate([file]) || textField.val()!=''){
             formData.append("textField", textField.val());
-
+            
             postFormData("./server/home/create_post.php", formData)
                 .then((jsonResult) => {
                     if (jsonResult.status == 200) {
-                        // $("#close-modal").click()
+                        $("#postModal").modal("hide");
+                        $("#file").val("");
+                        $("#textField").val("");
                     } else {
                         commonValidatMessage(jsonResult);
                     }

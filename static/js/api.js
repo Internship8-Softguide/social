@@ -5,6 +5,7 @@ const postFormData = async (url, formData) => {
         contentType: false,
         processData: false,
         data: formData,
+        dataType: "json",
     });
 };
 
