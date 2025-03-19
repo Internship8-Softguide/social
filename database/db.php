@@ -33,7 +33,7 @@ function createTables($mysqli)
             `email` VARCHAR(225) UNIQUE NOT NULL,
             `password` VARCHAR(225) NOT NULL,
             `phone` VARCHAR(225) NOT NULL,
-            `bio` VARCHAR(225) DEFAULT '',
+            `education` VARCHAR(225) DEFAULT '',
             `location` VARCHAR(225) DEFAULT '',
             `date_of_birth` DATE NOT NULL,
             `photo` VARCHAR(225) NOT NULL,
